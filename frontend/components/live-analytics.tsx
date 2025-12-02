@@ -34,7 +34,10 @@ export function LiveAnalytics() {
       </div>
   )
 
-  const topicsData = stats.intents_distribution.map((i: any) => ({
+  // CORRECCIÓN: Validar que intents_distribution sea un array antes de mapear
+  const intentsDistribution = stats.intents_distribution || [];
+  
+  const topicsData = intentsDistribution.map((i: any) => ({
       name: i.name,
       value: i.value
   }))

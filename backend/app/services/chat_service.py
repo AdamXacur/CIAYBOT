@@ -24,10 +24,6 @@ class ChatService:
         except: return "Eres el asistente del CIAY."
 
     async def _classify_intent_semantically(self, message: str):
-        """
-        Fase 1: El Cerebro Clasificador.
-        Usa un LLM ligero para determinar la intención antes de generar respuesta.
-        """
         classification_prompt = [
             {"role": "system", "content": """
             Eres el Clasificador Semántico del CIAY. Tu ÚNICA tarea es categorizar el input del usuario.
@@ -53,7 +49,7 @@ class ChatService:
                     json={
                         "model": "deepseek-chat",
                         "messages": classification_prompt,
-                        "temperature": 0.1, # Muy determinista
+                        "temperature": 0.1,
                         "max_tokens": 100,
                         "response_format": { "type": "json_object" }
                     }
@@ -65,7 +61,6 @@ class ChatService:
         except Exception as e:
             print(f"Error en clasificación: {e}")
         
-        # Fallback si falla la IA
         return {"intent": "GENERAL", "confidence": 0.5, "reasoning": "Fallback logic"}
 
     def _save_log_background(self, log_data):
@@ -88,10 +83,8 @@ class ChatService:
             logs.append(entry)
             await manager.broadcast_log(step, detail, status, data)
 
-        # 1. Inicio
         await log_step("[KERNEL]", f"Iniciando sesión segura: {session_id[:6]}...", "success")
         
-        # 2. Clasificación Semántica (NUEVO)
         await log_step("[SEMANTIC_ROUTER]", "Analizando perfil del usuario...", "running")
         classification = await self._classify_intent_semantically(message)
         intent = classification.get("intent", "GENERAL")
@@ -103,19 +96,22 @@ class ChatService:
             classification
         )
 
-        # 3. Actualizar Grafo en Tiempo Real (NUEVO)
-        # Esto hace que el nodo crezca en el frontend
         await graph_service.boost_node_dynamic(intent)
         
-        # 4. RAG Contextual
         await log_step("[RAG_ENGINE]", f"Buscando contexto para: {intent}...", "running")
         context_items = rag_service.search(db, message)
         context_text = "\n".join([f"- {item.content}" for item in context_items])
         
-        # 5. Generación de Respuesta
-        await log_step("[LLM_SYNTHESIS]", "Sintetizando respuesta adaptativa...", "running")
+        # --- CAMBIO AQUÍ: ENVIAR DATOS REALES DE CONFIGURACIÓN ---
+        await log_step("[LLM_SYNTHESIS]", "Sintetizando respuesta adaptativa...", "running", {
+            "model": "deepseek-chat",
+            "provider": "DeepSeek API",
+            "max_tokens": 4096,
+            "temperature": 0.7,
+            "stream": True
+        })
+        # ---------------------------------------------------------
         
-        # Adaptar el System Prompt según el perfil detectado
         dynamic_instruction = ""
         if intent == "INVERSIONISTA":
             dynamic_instruction = "ADAPTACIÓN: Usa tono ejecutivo. Enfócate en ROI, ecosistema y oportunidades de negocio."
@@ -155,7 +151,6 @@ class ChatService:
             yield f"Error del sistema: {str(e)}"
             await log_step("[ERROR]", str(e), "failed")
 
-        # 6. Guardado de Logs
         log_data = {
             "session_id": session_id,
             "user_input": message,

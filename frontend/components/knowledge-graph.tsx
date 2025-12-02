@@ -14,7 +14,6 @@ const ForceGraph2D = dynamic(() => import("react-force-graph-2d").then(mod => {
 });
 
 export function KnowledgeGraph() {
-  // Estado inicial limpio
   const [graphData, setGraphData] = useState<any>({ nodes: [], links: [] })
   const [activeNode, setActiveNode] = useState<string | null>(null)
   const fgRef = useRef<any>()
@@ -26,7 +25,6 @@ export function KnowledgeGraph() {
     TEXT: "#475569"
   }
 
-  // 1. Carga inicial de la topología desde el backend
   useEffect(() => {
       fetch(`${API_BASE_URL}/api/v1/graph`)
         .then(res => res.json())
@@ -34,27 +32,35 @@ export function KnowledgeGraph() {
         .catch(err => console.error("Error loading graph:", err));
   }, []);
 
-  // 2. Escuchar WebSockets para actualizaciones en tiempo real (Heatmap)
+  // --- FÍSICAS AGRESIVAS PARA SEPARACIÓN ---
+  useEffect(() => {
+    if (fgRef.current) {
+        // 1. Repulsión Extrema: Los nodos se empujan con mucha fuerza
+        fgRef.current.d3Force('charge').strength(-4000); 
+        
+        // 2. Distancia de Enlace Larga: Obliga a los satélites a alejarse del centro
+        fgRef.current.d3Force('link').distance(250);
+        
+        // 3. Centrado Suave: Mantiene el grafo en pantalla pero permite expansión
+        fgRef.current.d3Force('center').strength(0.5);
+        
+        fgRef.current.d3ReheatSimulation();
+    }
+  }, [graphData]);
+
   useEffect(() => {
     const ws = new WebSocket(`${WS_BASE_URL}/ws/logs`)
-    
     ws.onmessage = (event) => {
         try {
             const msg = JSON.parse(event.data)
-            
-            // EVENTO: Actualización de Calor (Heat)
             if (msg.type === "graph_heat") {
                 const { node_id, new_weight } = msg.payload;
-                
-                // Actualizamos el peso del nodo en el estado local
                 setGraphData((prev: any) => ({
                     ...prev,
                     nodes: prev.nodes.map((n: any) => 
                         n.id === node_id ? { ...n, val: new_weight } : n
                     )
                 }));
-
-                // Efecto visual de "Highlight"
                 setActiveNode(node_id);
                 setTimeout(() => setActiveNode(null), 2000);
             }
@@ -82,8 +88,9 @@ export function KnowledgeGraph() {
             backgroundColor="#ffffff"
             linkColor={() => "#e2e8f0"}
             linkWidth={2}
-            d3AlphaDecay={0.05}
-            d3VelocityDecay={0.3}
+            d3AlphaDecay={0.01} // Movimiento más lento y estable
+            d3VelocityDecay={0.4}
+            warmupTicks={200} // Pre-calcula 200 frames para que aparezca ya separado
             
             nodeCanvasObject={(node: any, ctx, globalScale) => {
                 const label = node.id;
@@ -93,13 +100,11 @@ export function KnowledgeGraph() {
                 let color = node.group === 'root' ? COLORS.ROOT : COLORS.PILLAR;
                 if (isActive) color = COLORS.ACTIVE;
 
-                // Radio dinámico basado en el valor (val) que viene del backend
                 const radius = node.val ? node.val : 10;
 
-                // Efecto de pulso si está activo
                 if (isActive) {
                     ctx.beginPath();
-                    ctx.arc(node.x, node.y, radius + 10, 0, 2 * Math.PI, false);
+                    ctx.arc(node.x, node.y, radius + 15, 0, 2 * Math.PI, false);
                     ctx.fillStyle = "rgba(234, 179, 8, 0.3)";
                     ctx.fill();
                 }
@@ -110,7 +115,7 @@ export function KnowledgeGraph() {
                 ctx.fill();
 
                 ctx.strokeStyle = '#ffffff';
-                ctx.lineWidth = 3 / globalScale;
+                ctx.lineWidth = 4 / globalScale; // Borde blanco más grueso para separar visualmente
                 ctx.stroke();
 
                 ctx.font = `bold ${fontSize}px Sans-Serif`;
@@ -121,7 +126,8 @@ export function KnowledgeGraph() {
                 if (node.group === 'root') {
                     ctx.fillText(label, node.x, node.y);
                 } else {
-                    ctx.fillText(label, node.x, node.y + radius + fontSize);
+                    // Texto más separado del nodo
+                    ctx.fillText(label, node.x, node.y + radius + fontSize + 2);
                 }
             }}
         />

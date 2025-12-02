@@ -57,4 +57,3 @@ volumes:
   ciay_postgres_data:
   caddy_data:
   caddy_config:
---- END OF CONTENT ---

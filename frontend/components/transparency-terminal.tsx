@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Activity, Wifi, WifiOff, ChevronRight, Code } from "lucide-react"
-import { WS_BASE_URL } from "@/lib/config" // <--- IMPORTANTE
+import { WS_BASE_URL } from "@/lib/config"
 import {
   Sheet,
   SheetContent,
@@ -28,7 +28,6 @@ export function TransparencyTerminal() {
 
   useEffect(() => {
     const connectWebSocket = () => {
-      // USAMOS LA URL DE PRODUCCIÓN
       const ws = new WebSocket(`${WS_BASE_URL}/ws/logs`)
       wsRef.current = ws
 
@@ -165,4 +164,3 @@ export function TransparencyTerminal() {
     </>
   )
 }
---- END OF CONTENT ---

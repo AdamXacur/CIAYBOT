@@ -5,8 +5,9 @@ services:
     container_name: ciay_db
     volumes:
       - ciay_postgres_data:/var/lib/postgresql/data
+    # CAMBIO: Apuntar al .env en la raíz (donde está este archivo)
     env_file:
-      - backend/.env
+      - .env
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ciay_admin -d ciay_db"]
@@ -19,8 +20,9 @@ services:
     build: ./backend
     container_name: ciay_backend
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    # CAMBIO: Apuntar al .env en la raíz
     env_file:
-      - backend/.env
+      - .env
     depends_on:
       db_ciay:
         condition: service_healthy
@@ -31,7 +33,6 @@ services:
     build: 
       context: ./frontend
       args:
-        # URL de Producción para que el build de Next.js sepa a dónde apuntar
         NEXT_PUBLIC_API_URL: https://api.xac.lat
     container_name: ciay_frontend
     restart: always

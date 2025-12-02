@@ -58,7 +58,7 @@
   }
 }
 
-/* Custom Scrollbar for Terminal */
+/* Custom Scrollbar con colores oficiales */
 .custom-scrollbar::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -67,9 +67,9 @@
   background: #1e293b;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #7a1c42;
+  background: #624E32; /* ciay-brown */
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #C49B64; /* ciay-gold */
 }

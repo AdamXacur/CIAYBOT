@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Send, User, Cpu } from "lucide-react"
+import { Send, User, Cpu, Sparkles } from "lucide-react"
 import ReactMarkdown from 'react-markdown'
+import { API_BASE_URL } from "@/lib/config"
 
 interface Message {
   id: string
@@ -12,22 +13,14 @@ interface Message {
   isStreaming?: boolean
 }
 
-const QUICK_SUGGESTIONS = ["¿Qué es el CIAY?", "Quiero invertir", "¿Hay becas?", "Programas disponibles"]
-const API_URL = "https://api.xac.lat/api/v1/chat";
+const QUICK_SUGGESTIONS = ["Inversión en Yucatán", "Oferta Educativa IA", "Trámites de Gobierno", "Startups Locales"]
 
-export function ChatPanel() {
-  const [sessionId, setSessionId] = useState<string>("")
-  
-  // CORRECCIÓN: Generar ID solo en cliente para evitar error de hidratación
-  useEffect(() => {
-    setSessionId(Math.random().toString(36).substring(7))
-  }, [])
-
+export function ChatPanel({ sessionId }: { sessionId: string }) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
       role: "assistant",
-      content: "¡Bienvenido al **Centro de Inteligencia Artificial de Yucatán**! Soy tu asistente Neuro-Simbólico. ¿En qué puedo ayudarte hoy?",
+      content: "Hola. Soy el asistente oficial del **CIAY**. Estoy conectado a la infraestructura de AWS para brindarte información precisa sobre tecnología, inversión y gobierno en Yucatán.",
       timestamp: new Date(),
       isStreaming: false
     },
@@ -59,7 +52,7 @@ export function ChatPanel() {
     setIsLoading(true)
 
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_BASE_URL}/api/v1/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage.content, session_id: sessionId }),
@@ -70,13 +63,7 @@ export function ChatPanel() {
       const assistantId = (Date.now() + 1).toString()
       setMessages((prev) => [
         ...prev,
-        {
-          id: assistantId,
-          role: "assistant",
-          content: "",
-          timestamp: new Date(),
-          isStreaming: true
-        }
+        { id: assistantId, role: "assistant", content: "", timestamp: new Date(), isStreaming: true }
       ])
       
       setIsLoading(false)
@@ -93,141 +80,92 @@ export function ChatPanel() {
         if (value) {
           const chunk = decoder.decode(value, { stream: true })
           accumulatedText += chunk
-          
-          setMessages((prev) => 
-            prev.map((msg) => 
-              msg.id === assistantId 
-                ? { ...msg, content: accumulatedText } 
-                : msg
-            )
-          )
+          setMessages((prev) => prev.map((msg) => msg.id === assistantId ? { ...msg, content: accumulatedText } : msg))
         }
       }
-
-      setMessages((prev) => 
-        prev.map((msg) => 
-          msg.id === assistantId 
-            ? { ...msg, isStreaming: false } 
-            : msg
-        )
-      )
+      setMessages((prev) => prev.map((msg) => msg.id === assistantId ? { ...msg, isStreaming: false } : msg))
 
     } catch (error) {
-      console.error("Error:", error)
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          role: "assistant",
-          content: "Error de conexión con el flujo de datos.",
-          timestamp: new Date(),
-        }
-      ])
+      setMessages((prev) => [...prev, { id: Date.now().toString(), role: "assistant", content: "Error de conexión.", timestamp: new Date() }])
       setIsLoading(false)
     }
   }
 
-  const handleQuickSuggestion = (suggestion: string) => {
-    setInput(suggestion)
-  }
-
   return (
-    <div className="h-full flex flex-col">
-      <div className="px-6 py-4 border-b border-guinda/30 flex justify-between items-center">
-        <h2 className="text-lg font-bold text-dorado uppercase tracking-wider flex items-center gap-2">
-          <User className="w-5 h-5" />
-          Interacción Ciudadana
-        </h2>
-        {/* Renderizar ID solo si existe para evitar mismatch */}
-        {sessionId && <span className="text-[10px] text-gray-500 font-mono">ID: {sessionId}</span>}
-      </div>
-
-      <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 custom-scrollbar">
+    <div className="h-full flex flex-col bg-transparent">
+      {/* Mensajes */}
+      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 custom-scrollbar">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              className={`max-w-[85%] rounded-lg px-4 py-3 ${
-                message.role === "user" ? "bg-guinda text-white" : "bg-slate-700 text-gray-100 border border-dorado/20"
+              className={`max-w-[90%] md:max-w-[85%] rounded-2xl px-6 py-4 shadow-sm ${
+                message.role === "user" 
+                ? "bg-ciay-brown text-white rounded-br-none"
+                : "bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-md"
               }`}
             >
-              <div className="flex items-start gap-2">
-                {message.role === "assistant" && <Cpu className={`w-5 h-5 text-dorado flex-shrink-0 mt-0.5 ${message.isStreaming ? 'animate-pulse' : ''}`} />}
-                <div className="flex-1 text-sm leading-relaxed">
+              <div className="flex items-start gap-4">
+                {message.role === "assistant" && (
+                  <div className="w-8 h-8 rounded-full bg-ciay-gold/10 flex items-center justify-center flex-shrink-0">
+                     <Sparkles className="w-4 h-4 text-ciay-brown" />
+                  </div>
+                )}
+                <div className="flex-1 text-sm leading-7">
                   <ReactMarkdown 
                     components={{
-                      strong: ({node, ...props}) => <span className="font-bold text-dorado" {...props} />,
+                      strong: ({node, ...props}) => <span className={`font-bold ${message.role === 'user' ? 'text-ciay-gold' : 'text-ciay-brown'}`} {...props} />,
                       ul: ({node, ...props}) => <ul className="list-disc pl-4 mt-2 space-y-1" {...props} />,
-                      li: ({node, ...props}) => <li className="text-gray-300" {...props} />,
-                      a: ({node, ...props}) => <a className="text-blue-400 hover:underline" target="_blank" {...props} />
+                      li: ({node, ...props}) => <li className="" {...props} />,
+                      a: ({node, ...props}) => <a className="text-blue-500 hover:underline" target="_blank" {...props} />
                     }}
                   >
                     {message.content}
                   </ReactMarkdown>
-                  
-                  {message.isStreaming && (
-                    <span className="inline-block w-2 h-4 bg-dorado ml-1 animate-pulse align-middle"></span>
-                  )}
-
-                  {!message.isStreaming && (
-                    <p className="text-xs opacity-60 mt-2 border-t border-white/10 pt-1">
-                      {message.timestamp.toLocaleTimeString("es-MX", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
-                  )}
                 </div>
               </div>
             </div>
           </div>
         ))}
-        
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-slate-700 rounded-lg px-4 py-3 border border-dorado/20">
-              <div className="flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-dorado animate-pulse" />
-                <span className="text-xs text-gray-400">Conectando con DeepSeek...</span>
-              </div>
+            <div className="bg-white rounded-lg px-4 py-3 border border-gray-200 shadow-sm flex items-center gap-3">
+              <Cpu className="w-4 h-4 text-ciay-gold animate-spin" />
+              <span className="text-xs text-gray-500 font-bold uppercase">Consultando AWS Bedrock...</span>
             </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="px-6 py-3 border-t border-guinda/30 bg-slate-800/30">
-        <div className="flex flex-wrap gap-2">
-          {QUICK_SUGGESTIONS.map((suggestion) => (
-            <button
-              key={suggestion}
-              onClick={() => handleQuickSuggestion(suggestion)}
-              className="px-3 py-1.5 text-xs bg-slate-700 hover:bg-guinda text-gray-300 hover:text-white rounded-full border border-guinda/30 hover:border-dorado transition-all"
-            >
-              {suggestion}
+      {/* Input Area - Más corporativo */}
+      <div className="p-6 bg-white border-t border-gray-100">
+        <div className="flex flex-wrap gap-2 mb-4">
+          {QUICK_SUGGESTIONS.map((s) => (
+            <button key={s} onClick={() => setInput(s)} className="px-3 py-1 text-xs font-medium text-ciay-slate bg-ciay-cream hover:bg-ciay-brown hover:text-white rounded-full transition-colors border border-ciay-brown/10">
+              {s}
             </button>
           ))}
         </div>
-      </div>
-
-      <div className="px-6 py-4 border-t border-guinda/30 bg-slate-800/50">
-        <div className="flex gap-2">
+        <div className="flex gap-3 relative">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-            placeholder="Escribe tu mensaje..."
-            className="flex-1 bg-slate-700 text-white px-4 py-3 rounded-lg border border-guinda/30 focus:border-dorado focus:outline-none focus:ring-2 focus:ring-dorado/20 placeholder-gray-500"
+            placeholder="Escribe tu consulta aquí..."
+            className="flex-1 bg-gray-50 text-gray-900 px-5 py-4 rounded-xl border border-gray-200 focus:border-ciay-brown focus:ring-1 focus:ring-ciay-brown outline-none shadow-inner transition-all placeholder:text-gray-400"
             disabled={isLoading}
           />
           <button
             onClick={handleSendMessage}
             disabled={isLoading || !input.trim()}
-            className="bg-guinda hover:bg-guinda/80 text-white px-6 py-3 rounded-lg flex items-center gap-2 font-bold uppercase text-sm tracking-wider transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-ciay-brown hover:bg-ciay-brown/90 text-white px-8 py-4 rounded-xl flex items-center gap-2 font-bold transition-all shadow-lg shadow-ciay-brown/20 hover:shadow-xl"
           >
-            <Send className="w-4 h-4" />
-            Enviar
+            <Send className="w-5 h-5" />
           </button>
+        </div>
+        <div className="text-center mt-3">
+             <p className="text-[10px] text-gray-400">Protegido por AWS Shield. La IA puede cometer errores.</p>
         </div>
       </div>
     </div>

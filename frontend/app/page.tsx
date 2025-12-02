@@ -15,32 +15,40 @@ export default function Page() {
 
   return (
     <Sheet>
-      <div className="min-h-screen bg-slate-900 text-white relative overflow-hidden">
-        <div className="fixed inset-0 opacity-10 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#7A1C42_1px,transparent_1px),linear-gradient(to_bottom,#7A1C42_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-        </div>
-
-        <header className="relative z-10 border-b border-guinda/30 bg-slate-900/95 backdrop-blur-sm">
-          <div className="h-1 bg-gradient-to-r from-guinda via-dorado to-guinda"></div>
-          <div className="container mx-auto px-4 sm:px-6 py-4">
+      <div className="min-h-screen bg-ciay-cream text-slate-800 relative overflow-hidden font-sans">
+        
+        <header className="relative z-10 border-b border-ciay-brown/10 bg-white shadow-sm">
+          <div className="h-[4px] bg-ciay-brown"></div>
+          
+          <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-dorado to-guinda rounded-lg flex items-center justify-center">
-                  <span className="text-xl sm:text-2xl font-bold text-white">C</span>
-                </div>
-                <div>
-                  <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">CIAY</h1>
-                  <p className="text-[10px] sm:text-xs text-dorado uppercase tracking-[0.2em] font-medium">
-                    Inteligencia Artificial Yucatán
+              
+              <div className="flex items-center gap-6">
+                <img 
+                  src="/logo-color.svg" 
+                  alt="CIAY Logo" 
+                  className="h-14 w-auto"
+                />
+                
+                <div className="w-px h-10 bg-ciay-silver hidden sm:block"></div>
+                
+                <div className="hidden sm:block">
+                  <h1 className="text-sm font-bold text-ciay-brown tracking-wide uppercase">
+                    Plataforma Neuro-Simbólica
+                  </h1>
+                  {/* --- CAMBIO DE TEXTO AQUÍ --- */}
+                  <p className="text-[10px] text-ciay-slate font-medium tracking-widest mt-0.5">
+                    BASE DE CONOCIMIENTO INSTITUCIONAL
                   </p>
+                  {/* --------------------------- */}
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <StatusIndicator />
                 <SheetTrigger asChild>
-                  <button className="md:hidden p-2 bg-slate-800 rounded-lg border border-guinda/50 text-dorado">
-                    <BrainCircuit className="w-5 h-5" />
+                  <button className="md:hidden p-2 bg-white rounded-lg border border-ciay-brown/20 text-ciay-brown shadow-sm">
+                    <BrainCircuit className="w-6 h-6" />
                   </button>
                 </SheetTrigger>
               </div>
@@ -48,22 +56,21 @@ export default function Page() {
           </div>
         </header>
 
-        <main className="relative z-10 h-[calc(100vh-88px)] sm:h-[calc(100vh-96px)]">
+        <main className="relative z-10 h-[calc(100vh-90px)]">
           <div className="h-full flex flex-col md:flex-row">
-            <div className="w-full md:w-[40%] md:border-r border-guinda/30 bg-slate-800/50 backdrop-blur-sm h-full">
-              <ChatPanel sessionId={sessionId} />
+            <div className="w-full md:w-[45%] md:border-r border-ciay-brown/10 bg-white h-full relative">
+               <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03] pointer-events-none"></div>
+               <ChatPanel sessionId={sessionId} />
             </div>
 
-            <div className="hidden md:block w-full md:w-[60%] bg-slate-900/50 h-full">
-              <BrainPanel sessionId={sessionId} />
+            <div className="hidden md:block w-full md:w-[55%] bg-white h-full border-l-4 border-ciay-gold relative shadow-2xl">
+              <BrainPanel />
             </div>
 
-            <SheetContent side="bottom" className="md:hidden h-[85%] bg-slate-950 border-t-2 border-guinda p-0">
-                {/* --- FIX: Añadir Título y Descripción para accesibilidad --- */}
-                <SheetTitle className="sr-only">Cerebro Digital</SheetTitle>
-                <SheetDescription className="sr-only">Panel con la terminal, grafo de conocimiento y analíticas.</SheetDescription>
-                {/* --------------------------------------------------------- */}
-                <BrainPanel sessionId={sessionId} />
+            <SheetContent side="bottom" className="md:hidden h-[85%] bg-white border-t-4 border-ciay-gold p-0">
+                <SheetTitle className="sr-only">Motor Digital</SheetTitle>
+                <SheetDescription className="sr-only">Visualización técnica.</SheetDescription>
+                <BrainPanel />
             </SheetContent>
           </div>
         </main>

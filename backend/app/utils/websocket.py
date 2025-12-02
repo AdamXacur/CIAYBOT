@@ -1,11 +1,11 @@
 from fastapi import WebSocket
 from typing import List, Any, Optional
+import json
 
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
 
-    # CORRECCIÓN: Quitamos el session_id obligatorio o lo hacemos opcional
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_connections.append(websocket)
@@ -25,24 +25,20 @@ class ConnectionManager:
                 "data": data
             }
         }
-        # Broadcast a todos (para la demo es mejor que todos vean lo mismo)
         for connection in self.active_connections:
             try: await connection.send_json(message)
             except: pass
 
-    async def broadcast_graph_update(self, node_id: str):
+    async def broadcast_graph_update(self, node_id: str, new_weight: int):
+        """
+        Notifica al frontend que un nodo ha crecido en importancia.
+        """
         message = {
-            "type": "graph_event",
-            "payload": { "action": "highlight", "node_id": node_id }
-        }
-        for connection in self.active_connections:
-            try: await connection.send_json(message)
-            except: pass
-
-    async def broadcast_graph_data(self, graph_data: dict):
-        message = {
-            "type": "graph_data",
-            "payload": graph_data
+            "type": "graph_heat",
+            "payload": { 
+                "node_id": node_id,
+                "new_weight": new_weight
+            }
         }
         for connection in self.active_connections:
             try: await connection.send_json(message)

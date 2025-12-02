@@ -16,58 +16,61 @@ export function LiveAnalytics() {
       const res = await fetch(`${API_BASE_URL}/api/v1/analytics/dashboard/stats`)
       const data = await res.json()
       setStats(data)
-      setLoading(false)
     } catch (error) {
       console.error("Error fetching analytics:", error)
+    } finally {
+      setLoading(false)
     }
   }
 
   useEffect(() => {
     fetchData()
-    const interval = setInterval(fetchData, 2000)
+    const interval = setInterval(fetchData, 5000)
     return () => clearInterval(interval)
   }, [])
 
   if (loading || !stats) return (
-      <div className="h-full flex items-center justify-center text-dorado animate-pulse">
+      <div className="h-full flex items-center justify-center text-ciay-gold animate-pulse">
           <RefreshCw className="w-6 h-6 mr-2 animate-spin" /> Cargando métricas en tiempo real...
       </div>
   )
 
-  // CORRECCIÓN: Validar que intents_distribution sea un array antes de mapear
   const intentsDistribution = stats.intents_distribution || [];
-  
   const topicsData = intentsDistribution.map((i: any) => ({
       name: i.name,
       value: i.value
   }))
 
+  const avgSentiment = stats.average_sentiment !== undefined && stats.average_sentiment !== null 
+      ? stats.average_sentiment 
+      : 0;
+
   return (
     <div className="h-full overflow-y-auto p-6 space-y-6 custom-scrollbar bg-slate-900">
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] text-gray-400 uppercase tracking-wider">Interacciones Totales</p>
-              <p className="text-3xl font-bold text-dorado mt-1">{stats.total_interactions}</p>
+              <p className="text-3xl font-bold text-ciay-gold mt-1">{stats.total_interactions || 0}</p>
             </div>
-            <MessageSquare className="w-8 h-8 text-guinda opacity-50" />
+            <MessageSquare className="w-8 h-8 text-ciay-brown opacity-50" />
           </div>
         </div>
 
-        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] text-gray-400 uppercase tracking-wider">Sentimiento Promedio</p>
-              <p className={`text-3xl font-bold mt-1 ${stats.average_sentiment >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                  {stats.average_sentiment.toFixed(2)}
+              <p className={`text-3xl font-bold mt-1 ${avgSentiment >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {Number(avgSentiment).toFixed(2)}
               </p>
             </div>
             <Activity className="w-8 h-8 text-blue-400 opacity-50" />
           </div>
         </div>
         
-        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-white/5">
              <div className="flex items-center justify-between">
             <div>
               <p className="text-[10px] text-gray-400 uppercase tracking-wider">Estado del Motor</p>
@@ -79,29 +82,30 @@ export function LiveAnalytics() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-slate-800/30 rounded-lg p-4 border border-guinda/20">
-            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Distribución de Intenciones (Real)</h4>
-            <div className="h-64">
+        <div className="bg-slate-800/30 rounded-lg p-4 border border-white/5">
+            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Distribución de Intenciones</h4>
+            {/* --- BLINDAJE CONTRA ERROR DE RECHARTS --- */}
+            <div className="h-64 min-h-[256px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={topicsData} layout="vertical">
                         <CartesianGrid strokeDasharray="3 3" stroke="#374151" horizontal={false} />
                         <XAxis type="number" hide />
                         <YAxis dataKey="name" type="category" width={100} tick={{fill: '#9ca3af', fontSize: 10}} />
-                        <Tooltip contentStyle={{backgroundColor: '#1e293b', borderColor: '#7A1C42'}} />
-                        <Bar dataKey="value" fill="#D4AF37" radius={[0, 4, 4, 0]} barSize={20} />
+                        <Tooltip contentStyle={{backgroundColor: '#1e293b', borderColor: '#624E32'}} />
+                        <Bar dataKey="value" fill="#C49B64" radius={[0, 4, 4, 0]} barSize={20} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
         </div>
 
-        <div className="bg-slate-800/30 rounded-lg p-4 border border-guinda/20">
+        <div className="bg-slate-800/30 rounded-lg p-4 border border-white/5">
             <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Feed de Actividad</h4>
             <div className="space-y-2">
-                {stats.recent_activity.map((log: any, idx: number) => (
+                {(stats.recent_activity || []).map((log: any, idx: number) => (
                     <div key={idx} className="text-xs border-b border-gray-700 pb-2">
                         <div className="flex justify-between text-gray-500 mb-1">
                             <span>{log.time}</span>
-                            <span className="text-dorado">{log.intent}</span>
+                            <span className="text-ciay-gold">{log.intent}</span>
                         </div>
                         <div className="text-gray-300 truncate">{log.user}</div>
                     </div>

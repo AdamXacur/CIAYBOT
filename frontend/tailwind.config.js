@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-source-sans)", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -24,36 +27,39 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#624E32",
+          foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#F0EBE3", 
+          foreground: "#624E32",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#F5F5F4",
+          foreground: "#71706C",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#F0EBE3",
+          foreground: "#624E32",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "#FFFFFF",
+          foreground: "#624E32",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "#FFFFFF",
+          foreground: "#624E32",
         },
-        // CIAY Custom Colors
-        guinda: "#7a1c42",
-        dorado: "#d4af37",
+        // --- PALETA OFICIAL CIAY ---
+        'ciay-cream': '#F0EBE3',  // Fondo Principal (Hueso/Crema)
+        'ciay-brown': '#624E32',  // Color Primario (Café)
+        'ciay-gold': '#C49B64',   // Acentos (Dorado)
+        'ciay-silver': '#BDC1C2', // Secundario
+        'ciay-slate': '#71706C',  // Texto Secundario
       },
       borderRadius: {
         lg: "var(--radius)",

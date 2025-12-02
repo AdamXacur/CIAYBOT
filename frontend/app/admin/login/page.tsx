@@ -19,7 +19,7 @@ export default function LoginPage() {
     formData.append("password", password)
 
     try {
-      const res = await fetch("http://localhost:8000/api/v1/auth/login", {
+      const res = await fetch("https://api.xac.lat/api/v1/auth/login", {
         method: "POST",
         body: formData,
       })
@@ -36,10 +36,12 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-slate-900 border border-guinda/30 rounded-xl p-8 shadow-2xl">
+      {/* Borde cambiado a ciay-brown/30 */}
+      <div className="w-full max-w-md bg-slate-900 border border-ciay-brown/30 rounded-xl p-8 shadow-2xl">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-guinda/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-guinda">
-            <ShieldCheck className="w-8 h-8 text-dorado" />
+          {/* Icono cambiado a ciay-brown */}
+          <div className="w-16 h-16 bg-ciay-brown/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-ciay-brown">
+            <ShieldCheck className="w-8 h-8 text-ciay-gold" />
           </div>
           <h1 className="text-2xl font-bold text-white">Acceso Administrativo</h1>
           <p className="text-gray-400 text-sm mt-2">Sistema de Control CIAY</p>
@@ -52,7 +54,7 @@ export default function LoginPage() {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-dorado focus:outline-none"
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-ciay-gold focus:outline-none"
               placeholder="admin"
             />
           </div>
@@ -62,7 +64,7 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-dorado focus:outline-none"
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:border-ciay-gold focus:outline-none"
               placeholder="••••••••"
             />
           </div>
@@ -71,7 +73,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-guinda hover:bg-guinda/80 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-ciay-brown hover:bg-ciay-brown/80 text-white font-bold py-3 rounded-lg transition-colors flex items-center justify-center gap-2 border border-ciay-gold/20"
           >
             <Lock className="w-4 h-4" />
             Iniciar Sesión

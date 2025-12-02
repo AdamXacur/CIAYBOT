@@ -1,42 +1,43 @@
 "use client"
 
 import { useState } from "react"
-import { Terminal, Network, BarChart3 } from "lucide-react"
+import { Terminal, Network } from "lucide-react"
 import { TransparencyTerminal } from "./transparency-terminal"
 import { KnowledgeGraph } from "./knowledge-graph"
-import { LiveAnalytics } from "./live-analytics"
 
-type TabType = "terminal" | "graph" | "analytics"
+type TabType = "terminal" | "graph"
 
 export function BrainPanel() {
-  const [activeTab, setActiveTab] = useState<TabType>("terminal")
+  const [activeTab, setActiveTab] = useState<TabType>("graph")
 
   const tabs = [
-    { id: "terminal" as TabType, label: "Terminal", icon: Terminal },
-    { id: "graph" as TabType, label: "Grafo 3D", icon: Network },
-    { id: "analytics" as TabType, label: "Analítica", icon: BarChart3 },
+    { id: "graph" as TabType, label: "Mapa de Contexto", icon: Network },
+    { id: "terminal" as TabType, label: "Traza de Ejecución", icon: Terminal },
   ]
 
   return (
-    <div className="h-full flex flex-col">
-      <div className="border-b border-guinda/30 bg-slate-900/80">
-        <div className="px-6 py-4 flex justify-between items-center">
-          <h2 className="text-lg font-bold text-dorado uppercase tracking-wider">Cerebro Digital</h2>
+    <div className="h-full flex flex-col bg-white">
+      {/* Header del Panel */}
+      <div className="border-b border-gray-200 bg-gray-50/50">
+        <div className="px-6 py-3 flex justify-between items-center">
+          <h2 className="text-xs font-bold text-ciay-brown uppercase tracking-[0.2em] flex items-center gap-2">
+            <span className="text-green-500 animate-pulse">●</span> Motor Cognitivo
+          </h2>
           
-          <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+          <div className="flex bg-gray-200/50 rounded-lg p-1">
             {tabs.map((tab) => {
               const Icon = tab.icon
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-bold transition-all whitespace-nowrap ${
                     activeTab === tab.id
-                      ? "bg-guinda text-white shadow-lg shadow-guinda/20"
-                      : "bg-slate-800/50 text-gray-400 hover:text-white hover:bg-slate-700"
+                      ? "bg-white text-ciay-brown shadow-sm border border-gray-200"
+                      : "text-gray-400 hover:text-gray-600 hover:bg-gray-200/50"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3 h-3" />
                   {tab.label}
                 </button>
               )
@@ -45,16 +46,12 @@ export function BrainPanel() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-hidden bg-black/40 relative">
-        {/* CORRECCIÓN: Renderizar todos pero ocultar con CSS para mantener estado */}
+      <div className="flex-1 overflow-hidden relative">
         <div className={`h-full w-full ${activeTab === "terminal" ? "block" : "hidden"}`}>
             <TransparencyTerminal />
         </div>
         <div className={`h-full w-full ${activeTab === "graph" ? "block" : "hidden"}`}>
             <KnowledgeGraph />
-        </div>
-        <div className={`h-full w-full ${activeTab === "analytics" ? "block" : "hidden"}`}>
-            <LiveAnalytics />
         </div>
       </div>
     </div>

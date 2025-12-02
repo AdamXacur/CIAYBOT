@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react"
 import { Network, RefreshCw, Loader2, BrainCircuit } from "lucide-react"
 import dynamic from "next/dynamic"
-import { API_BASE_URL, WS_BASE_URL } from "@/lib/config" // <--- IMPORTANTE
+import { API_BASE_URL, WS_BASE_URL } from "@/lib/config"
 
 const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), {
   ssr: false,
@@ -44,7 +44,6 @@ export function KnowledgeGraph() {
     setLoading(true)
     setAiMode(false)
     try {
-      // USAMOS LA URL DE PRODUCCIÓN
       const res = await fetch(`${API_BASE_URL}/api/v1/graph`)
       const data = await res.json()
       setGraphData(processNodes(data))
@@ -54,7 +53,6 @@ export function KnowledgeGraph() {
   useEffect(() => {
     fetchGraph()
     
-    // USAMOS LA URL DE PRODUCCIÓN
     const ws = new WebSocket(`${WS_BASE_URL}/ws/logs`)
     ws.onmessage = (event) => {
         try {
@@ -124,4 +122,3 @@ export function KnowledgeGraph() {
     </div>
   )
 }
---- END OF CONTENT ---

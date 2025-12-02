@@ -5,7 +5,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts"
 import { TrendingUp, MessageSquare, Activity, RefreshCw } from "lucide-react"
-import { API_BASE_URL } from "@/lib/config" // <--- IMPORTANTE
+import { API_BASE_URL } from "@/lib/config"
 
 export function LiveAnalytics() {
   const [stats, setStats] = useState<any>(null)
@@ -13,7 +13,6 @@ export function LiveAnalytics() {
 
   const fetchData = async () => {
     try {
-      // USAMOS LA URL DE PRODUCCIÓN
       const res = await fetch(`${API_BASE_URL}/api/v1/analytics/dashboard/stats`)
       const data = await res.json()
       setStats(data)
@@ -110,4 +109,3 @@ export function LiveAnalytics() {
     </div>
   )
 }
---- END OF CONTENT ---

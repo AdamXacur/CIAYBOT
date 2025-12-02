@@ -14,10 +14,9 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-# Configuración CORS Permisiva
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Permitir todo para la demo
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -25,7 +24,7 @@ app.add_middleware(
 
 @app.websocket("/ws/logs")
 async def websocket_endpoint(websocket: WebSocket):
-    # Aceptar conexión sin validar origen (Caddy ya filtra)
+    # CORRECCIÓN: Llamada simple sin session_id
     await manager.connect(websocket)
     try:
         while True: await websocket.receive_text()

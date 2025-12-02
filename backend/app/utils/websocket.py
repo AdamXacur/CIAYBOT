@@ -1,40 +1,51 @@
 from fastapi import WebSocket
-from typing import Dict, Any, Optional
+from typing import List, Any, Optional
 
 class ConnectionManager:
     def __init__(self):
-        # --- FIX: Diccionario para mapear session_id a WebSocket ---
-        self.active_connections: Dict[str, WebSocket] = {}
+        self.active_connections: List[WebSocket] = []
 
-    async def connect(self, websocket: WebSocket, session_id: str):
+    # CORRECCIÓN: Quitamos el session_id obligatorio o lo hacemos opcional
+    async def connect(self, websocket: WebSocket):
         await websocket.accept()
-        self.active_connections[session_id] = websocket
+        self.active_connections.append(websocket)
 
-    def disconnect(self, session_id: str):
-        if session_id in self.active_connections:
-            del self.active_connections[session_id]
+    def disconnect(self, websocket: WebSocket):
+        if websocket in self.active_connections:
+            self.active_connections.remove(websocket)
 
-    async def _send_json_to(self, websocket: WebSocket, message: dict):
-        try:
-            await websocket.send_json(message)
-        except:
-            # Si la conexión está rota, la eliminamos silenciosamente
-            pass
-
-    # --- NUEVO: Enviar log a una sesión específica ---
-    async def send_log_to_session(self, session_id: str, step: str, detail: str, status: str = "running", data: Optional[Any] = None):
-        if session_id in self.active_connections:
-            websocket = self.active_connections[session_id]
-            message = {
-                "type": "log",
-                "payload": { "step": step, "detail": detail, "status": status, "data": data }
+    async def broadcast_log(self, step: str, detail: str, status: str = "running", data: Optional[Any] = None):
+        message = {
+            "type": "log",
+            "payload": {
+                "step": step,
+                "detail": detail,
+                "status": status,
+                "timestamp": "now",
+                "data": data
             }
-            await self._send_json_to(websocket, message)
+        }
+        # Broadcast a todos (para la demo es mejor que todos vean lo mismo)
+        for connection in self.active_connections:
+            try: await connection.send_json(message)
+            except: pass
 
-    # --- MODIFICADO: El grafo sí se transmite a todos ---
+    async def broadcast_graph_update(self, node_id: str):
+        message = {
+            "type": "graph_event",
+            "payload": { "action": "highlight", "node_id": node_id }
+        }
+        for connection in self.active_connections:
+            try: await connection.send_json(message)
+            except: pass
+
     async def broadcast_graph_data(self, graph_data: dict):
-        message = { "type": "graph_data", "payload": graph_data }
-        for websocket in self.active_connections.values():
-            await self._send_json_to(websocket, message)
+        message = {
+            "type": "graph_data",
+            "payload": graph_data
+        }
+        for connection in self.active_connections:
+            try: await connection.send_json(message)
+            except: pass
 
 manager = ConnectionManager()

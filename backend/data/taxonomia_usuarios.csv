@@ -1,0 +1,6 @@
+Codigo,Descripcion,Ejemplos,Nivel_Tecnico_Preferido
+INVERSIONISTA,Busca oportunidades de negocio o ROI,¿Cómo puedo invertir?|Quiero poner capital,NoTec
+ESTUDIANTE_TEC,Busca formación técnica avanzada,Quiero aprender Bedrock|¿Tienen cursos de Python?,Tec
+ESTUDIANTE_GRAL,Busca formación básica,¿Qué es la IA?|Quiero usar ChatGPT,NoTec
+GOBIERNO,Busca regulación y aplicación pública,¿Cómo aplico IA en leyes?|Temas de ética,NoTec
+INVESTIGADOR,Busca colaboración científica,Quiero publicar un paper|Tengo un dataset local,Tec

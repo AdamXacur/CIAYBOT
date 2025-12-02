@@ -1,0 +1,12 @@
+TEMA: Oferta Educativa y Capacitación del CIAY.
+ENFOQUE: Programas adaptados a distintos niveles, desde uso básico hasta desarrollo avanzado.
+CURSOS NO-TECNICOS (Estrategia y Uso):
+- Introducción a la IA Generativa (4 semanas): Uso de ChatGPT, Claude, DALL-E para automatización y toma de decisiones.
+- Prompt Engineering para no técnicos.
+- IA para el Derecho y Ética Legal.
+- IA en Marketing Digital.
+CURSOS TECNICOS (Desarrollo):
+- Desarrollo con Amazon Bedrock (8 semanas): En colaboración con AWS.
+- Integración de APIs GPT y Asistentes Virtuales.
+- Frameworks en Python y Detección de Fraudes.
+CERTIFICACIONES: El CIAY ofrece certificaciones alineadas a la demanda laboral.

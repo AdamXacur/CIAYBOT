@@ -1,0 +1,14 @@
+TEMA: Ecosistema, Alianzas y Contacto.
+SOCIOS INTERNACIONALES:
+- AWS (Amazon Web Services): Infraestructura de nube y capacitación.
+- Google: Herramientas y modelos.
+- OpenAI: Acceso a modelos de vanguardia.
+ENTIDADES LOCALES:
+- Agencia para el Desarrollo de Yucatán.
+- Secretaría de Economía del Estado.
+- Academia y Universidades locales.
+ACELERADORA DE STARTUPS: Apoyo integral con mentoría, financiamiento inicial y acceso a herramientas para emprendedores de IA.
+CONTACTO:
+- Email: info@yucatanai.org
+- Web: www.yucatanai.org
+- Ubicación física: Parque Científico y Tecnológico de Yucatán.

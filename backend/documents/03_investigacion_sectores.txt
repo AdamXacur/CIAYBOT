@@ -1,0 +1,11 @@
+TEMA: Investigación y Sectores Estratégicos.
+LINEAS DE INVESTIGACION PRIORITARIAS (LIP):
+1. Modelos de IA Generativa: Optimización de LLMs para aplicaciones locales.
+2. Ética y Gobernanza: Sesgos, privacidad y marcos regulatorios.
+3. Aplicaciones Sectoriales: Salud, Turismo, Agroindustria, Gobierno.
+SECTORES DE IMPACTO:
+- Turismo: Optimización de experiencias y análisis de datos.
+- Agricultura: Predicción y eficiencia.
+- Salud: Diagnóstico y gestión.
+- Gobierno: Eficiencia administrativa y atención ciudadana.
+- Manufactura y Retail: Automatización de procesos.

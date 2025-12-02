@@ -1,0 +1,223 @@
+[
+  /* ============================================================
+     1. CIUDADANO (Muestra 5 de 20 para brevedad, el patrón se repite)
+     ============================================================ */
+  {
+    "id": "ciay_qa_001",
+    "intent": "CIUDADANO",
+    "sector": "Transversal",
+    "category": "Identidad Institucional",
+    "complexity": "básico",
+    "user": "¿Qué es el CIAY?",
+    "bot": {
+      "answer": "El Centro de Inteligencia Artificial de Yucatán (CIAY) es el hub de innovación tecnológica más importante del sureste, ubicado en el Parque Científico. Nuestra misión es democratizar el acceso a la IA Generativa para impulsar la economía y el talento local.",
+      "mode": "institucional_ciay",
+      "confidence": 0.98
+    },
+    "rag_metadata": {
+      "keywords": ["ciay", "que es", "mision", "hub", "yucatan"],
+      "semantic_tags": ["identidad", "institucional", "general"],
+      "priority": 1.0
+    },
+    "filters": {
+      "persona_match": ["Ciudadano", "Prensa", "Gobierno"],
+      "tone_required": "profesional_inspirador"
+    }
+  },
+  {
+    "id": "ciay_qa_002",
+    "intent": "CIUDADANO",
+    "sector": "Transversal",
+    "category": "Divulgación",
+    "complexity": "básico",
+    "user": "¿Para qué sirve la inteligencia artificial?",
+    "bot": {
+      "answer": "La Inteligencia Artificial (IA) es una herramienta que permite a las computadoras aprender y realizar tareas inteligentes. En el CIAY, la usamos para mejorar la salud, optimizar el turismo, modernizar la agricultura y hacer más eficiente el gobierno.",
+      "mode": "educativo_ciay",
+      "confidence": 0.95
+    },
+    "rag_metadata": {
+      "keywords": ["ia", "inteligencia artificial", "para que sirve", "usos"],
+      "semantic_tags": ["divulgacion", "conceptos", "aplicaciones"],
+      "priority": 0.9
+    },
+    "filters": {
+      "persona_match": ["Ciudadano", "Estudiante"],
+      "tone_required": "didactico_claro"
+    }
+  },
+  {
+    "id": "ciay_qa_003",
+    "intent": "CIUDADANO",
+    "sector": "Infraestructura",
+    "category": "Ubicación",
+    "complexity": "básico",
+    "user": "¿Dónde están ubicados?",
+    "bot": {
+      "answer": "Nuestra sede principal se encuentra en el Parque Científico y Tecnológico de Yucatán, un ecosistema diseñado para la innovación. Puedes encontrarnos en Google Maps como 'CIAY Yucatán'.",
+      "mode": "informativo_ciay",
+      "confidence": 0.99
+    },
+    "rag_metadata": {
+      "keywords": ["ubicacion", "donde", "direccion", "parque cientifico"],
+      "semantic_tags": ["contacto", "geolocalizacion"],
+      "priority": 0.95
+    },
+    "filters": {
+      "persona_match": ["Ciudadano", "Todos"],
+      "tone_required": "directo_servicial"
+    }
+  },
+
+  /* ============================================================
+     2. ESTUDIANTE (Muestra 5 de 20)
+     ============================================================ */
+  {
+    "id": "ciay_qa_021",
+    "intent": "ESTUDIANTE",
+    "sector": "Educación",
+    "category": "Oferta Académica",
+    "complexity": "básico",
+    "user": "Quiero aprender IA, ¿por dónde empiezo?",
+    "bot": {
+      "answer": "¡Excelente iniciativa! Te recomendamos iniciar con nuestro curso 'Introducción a la IA Generativa'. Dura 4 semanas y no requiere conocimientos previos de programación. Aprenderás a usar herramientas como ChatGPT y Claude de forma profesional.",
+      "mode": "asesor_educativo",
+      "confidence": 0.96
+    },
+    "rag_metadata": {
+      "keywords": ["aprender", "curso", "inicio", "principiante", "ia generativa"],
+      "semantic_tags": ["formacion", "notec", "capacitacion"],
+      "priority": 0.92
+    },
+    "filters": {
+      "persona_match": ["Estudiante", "Ciudadano"],
+      "tone_required": "entusiasta_motivador"
+    }
+  },
+  {
+    "id": "ciay_qa_022",
+    "intent": "ESTUDIANTE",
+    "sector": "Educación",
+    "category": "Certificaciones",
+    "complexity": "intermedio",
+    "user": "¿Dan certificados?",
+    "bot": {
+      "answer": "Sí, todos nuestros cursos otorgan una constancia de participación. Además, nuestros programas técnicos avanzados, como el de 'Desarrollo con Amazon Bedrock', ofrecen certificaciones con valor curricular avaladas por nuestros socios tecnológicos.",
+      "mode": "asesor_educativo",
+      "confidence": 0.98
+    },
+    "rag_metadata": {
+      "keywords": ["certificado", "constancia", "valor curricular", "titulo"],
+      "semantic_tags": ["validacion", "credenciales", "educacion"],
+      "priority": 0.9
+    },
+    "filters": {
+      "persona_match": ["Estudiante", "Profesional"],
+      "tone_required": "formal_informativo"
+    }
+  },
+
+  /* ============================================================
+     3. INVERSIONISTA (Muestra 5 de 20)
+     ============================================================ */
+  {
+    "id": "ciay_qa_041",
+    "intent": "INVERSIONISTA",
+    "sector": "Negocios",
+    "category": "Oportunidades",
+    "complexity": "avanzado",
+    "user": "Busco startups de IA para invertir.",
+    "bot": {
+      "answer": "El CIAY cuenta con una Aceleradora de Startups de alto impacto. Actualmente incubamos proyectos en Agroindustria (AgroTech) y Turismo Inteligente. Puedo ponerte en contacto directo con nuestra Dirección de Vinculación Empresarial para presentarte el portafolio.",
+      "mode": "negocios_b2b",
+      "confidence": 0.94
+    },
+    "rag_metadata": {
+      "keywords": ["inversion", "startups", "capital", "portafolio", "agrotech"],
+      "semantic_tags": ["venture_capital", "emprendimiento", "roi"],
+      "priority": 0.95
+    },
+    "filters": {
+      "persona_match": ["Inversionista", "Empresario"],
+      "tone_required": "ejecutivo_estrategico"
+    }
+  },
+
+  /* ============================================================
+     4. GOBIERNO (Muestra 5 de 20)
+     ============================================================ */
+  {
+    "id": "ciay_qa_061",
+    "intent": "GOBIERNO",
+    "sector": "Gobierno",
+    "category": "Eficiencia",
+    "complexity": "intermedio",
+    "user": "¿Cómo puede la IA mejorar servicios públicos?",
+    "bot": {
+      "answer": "La IA permite optimizar la atención ciudadana mediante ventanillas digitales 24/7, predecir demanda de servicios (como agua o transporte) y analizar grandes volúmenes de datos para tomar decisiones de política pública basadas en evidencia.",
+      "mode": "consultor_gobierno",
+      "confidence": 0.93
+    },
+    "rag_metadata": {
+      "keywords": ["servicios publicos", "gobierno", "eficiencia", "politica publica"],
+      "semantic_tags": ["govtech", "modernizacion", "ciudadania"],
+      "priority": 0.9
+    },
+    "filters": {
+      "persona_match": ["Gobierno", "Funcionario"],
+      "tone_required": "institucional_solido"
+    }
+  },
+
+  /* ============================================================
+     5. SCEPTIC (Muestra 5 de 20)
+     ============================================================ */
+  {
+    "id": "ciay_qa_081",
+    "intent": "SCEPTIC",
+    "sector": "Ética",
+    "category": "Impacto Social",
+    "complexity": "intermedio",
+    "user": "La IA solo sirve para quitar empleos.",
+    "bot": {
+      "answer": "Entendemos esa preocupación. Sin embargo, la historia demuestra que la tecnología transforma el empleo, no lo elimina. El objetivo del CIAY es capacitar a los yucatecos para que ocupen los nuevos roles de alto valor que la economía digital está creando, complementando el talento humano, no sustituyéndolo.",
+      "mode": "gestion_crisis",
+      "confidence": 0.91
+    },
+    "rag_metadata": {
+      "keywords": ["empleo", "desempleo", "sustitucion", "miedo"],
+      "semantic_tags": ["etica", "impacto_laboral", "reskilling"],
+      "priority": 0.88
+    },
+    "filters": {
+      "persona_match": ["Ciudadano", "Critico"],
+      "tone_required": "empatico_argumentativo"
+    }
+  },
+
+  /* ============================================================
+     6. TECNICO (Muestra 5 de 20)
+     ============================================================ */
+  {
+    "id": "ciay_qa_101",
+    "intent": "TECNICO",
+    "sector": "Tecnología",
+    "category": "Infraestructura",
+    "complexity": "avanzado",
+    "user": "¿Usan Llama 3 o GPT-4?",
+    "bot": {
+      "answer": "En el CIAY somos agnósticos tecnológicamente. Utilizamos una arquitectura híbrida que integra modelos propietarios vía API (como GPT-4 de OpenAI y Claude de Anthropic) y modelos Open Source (como Llama 3 y Mistral) optimizados para correr en infraestructura local o en la nube de AWS.",
+      "mode": "ingeniero_ml",
+      "confidence": 0.97
+    },
+    "rag_metadata": {
+      "keywords": ["llama", "gpt", "modelos", "arquitectura", "opensource"],
+      "semantic_tags": ["llm", "infraestructura", "mlops"],
+      "priority": 0.94
+    },
+    "filters": {
+      "persona_match": ["Tecnico", "Desarrollador"],
+      "tone_required": "tecnico_preciso"
+    }
+  }
+]

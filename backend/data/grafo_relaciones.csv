@@ -1,0 +1,11 @@
+Origen,Relacion,Destino
+CIAY,se ubica en,Parque Científico de Yucatán
+CIAY,colabora con,Google
+CIAY,colabora con,AWS
+CIAY,impulsa a,Startups Yucatecas
+CIAY,pertenece a,Gobierno del Estado
+Google,provee tecnología a,CIAY
+AWS,provee nube a,CIAY
+Startups Yucatecas,reciben mentoría de,CIAY
+Sector Turismo,es beneficiario de,CIAY
+Sector Salud,es beneficiario de,CIAY

@@ -1,0 +1,6 @@
+ID,Tema,Contenido,Keywords,Nivel_Tecnico,Sector_Aplicacion,Fuente_URL
+PROG_01,Programas,"El CIAY cuenta con 4 programas estratégicos: 1. Formación de Talento, 2. Impulso al Emprendimiento, 3. Investigación Aplicada, 4. Soluciones Sectoriales.",programas, oferta, servicios,General,Transversal,https://yucatanai.org/programas
+EDU_01,Educación,"Programa de Formación: Ofrecemos cursos 'NoTec' para uso estratégico de IA y cursos 'Tec' para desarrolladores (Amazon Bedrock, Python).",curso, aprender, escuela,General,Educación,https://yucatanai.org/educacion
+EMP_01,Emprendimiento,"Programa de Aceleración: Incubadora para startups de IA. Ofrece mentoría y acceso a créditos de nube (AWS/Google).",startup, emprendedor, negocio,General,Negocios,https://yucatanai.org/startups
+INV_01,Investigación,"Programa de Investigación: Líneas prioritarias en Modelos Generativos, Ética y Gobernanza de IA.",investigacion, ciencia, laboratorio,Tec,Ciencia,https://yucatanai.org/investigacion
+MISION_01,Identidad,"El Centro de Inteligencia Artificial de Yucatán (CIAY) es el hub de innovación del estado.",mision, ciay, que es,General,Transversal,https://yucatanai.org

@@ -1,0 +1,46 @@
+services:
+  db_ciay:
+    image: postgres:15-alpine
+    container_name: ciay_db
+    volumes:
+      - ciay_postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ciay_admin
+      POSTGRES_PASSWORD: ciay_secure_pass
+      POSTGRES_DB: ciay_db
+    ports:
+      - "5432:5432"
+    networks:
+      - ciay_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ciay_admin -d ciay_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ciay_backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      db_ciay:
+        condition: service_healthy
+    networks:
+      - ciay_network
+    restart: unless-stopped
+
+networks:
+  ciay_network:
+    driver: bridge
+
+volumes:
+  ciay_postgres_data:

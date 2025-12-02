@@ -1,0 +1,1041 @@
+[
+  /* ============================================================
+     1. IDENTIDAD INSTITUCIONAL Y CIUDADANÍA (General)
+     ============================================================ */
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Qué es el CIAY?",
+    "bot": "El Centro de Inteligencia Artificial de Yucatán (CIAY) es el hub de innovación más avanzado del sureste, ubicado en el Parque Científico y Tecnológico. Nuestra misión es democratizar la IA Generativa para impulsar el 'Renacimiento Maya' digital."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Dónde están ubicados físicamente?",
+    "bot": "Nuestra sede se encuentra en el Parque Científico y Tecnológico de Yucatán, un ecosistema diseñado para la colaboración entre gobierno, academia y empresas tecnológicas."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Esto es del gobierno o privado?",
+    "bot": "El CIAY opera bajo un modelo de colaboración híbrida. Es impulsado por el Gobierno del Estado (Agencia para el Desarrollo de Yucatán) en alianza con gigantes tecnológicos como AWS, Google y OpenAI."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Cuál es su misión principal?",
+    "bot": "Posicionar a Yucatán como líder global en IA, capacitando talento local y transformando sectores clave como turismo, salud y agroindustria mediante tecnología generativa."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Cómo me beneficia a mí como ciudadano?",
+    "bot": "El CIAY trabaja para mejorar los servicios públicos que usas a diario (trámites, transporte, salud) y para crear empleos mejor pagados en la región mediante la atracción de inversión tecnológica."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Tienen costo los servicios?",
+    "bot": "Contamos con actividades de divulgación gratuitas. Los cursos especializados y certificaciones técnicas tienen costos accesibles o esquemas de becas para asegurar la inclusión."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Qué es eso de 'Renacimiento Maya'?",
+    "bot": "Es la estrategia estatal para combinar nuestra sabiduría ancestral con la tecnología del futuro. El CIAY es el motor tecnológico de esta visión para 2024-2030."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Puedo ir a visitar las instalaciones?",
+    "bot": "Sí, el CIAY es un espacio abierto a la innovación. Organizamos visitas guiadas y eventos de networking. Te sugerimos revisar la agenda en nuestro sitio web."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Es lo mismo que el CICY?",
+    "bot": "No. El CICY se enfoca en investigación científica general (biología, materiales). El CIAY es un centro especializado exclusivamente en Inteligencia Artificial Generativa y sus aplicaciones."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Tienen bolsa de trabajo?",
+    "bot": "Conectamos el talento que capacitamos con empresas tecnológicas y startups que buscan perfiles especializados en IA."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Qué hago si no sé nada de tecnología?",
+    "bot": "¡Es el mejor momento para empezar! Tenemos el curso 'Introducción a la IA Generativa' diseñado específicamente para perfiles no técnicos."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Atienden los fines de semana?",
+    "bot": "Nuestras oficinas administrativas operan de lunes a viernes, pero algunos bootcamps y hackathons se realizan en fines de semana."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Quién es el director?",
+    "bot": "El CIAY opera bajo una dirección colegiada en coordinación con la Secretaría de Economía y la Agencia para el Desarrollo de Yucatán."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Tienen estacionamiento?",
+    "bot": "Sí, el Parque Científico cuenta con amplias zonas de estacionamiento seguro para visitantes."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Hay transporte público para llegar?",
+    "bot": "Sí, existen rutas del sistema 'Va y Ven' que conectan Mérida con el Parque Científico y Tecnológico."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Aceptan voluntarios?",
+    "bot": "Sí, tenemos programas de voluntariado para eventos, logística y apoyo en investigación."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Tienen biblioteca?",
+    "bot": "Contamos con un acervo digital y acceso a repositorios científicos de nuestros socios (AWS, Google)."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Qué edad debo tener para entrar?",
+    "bot": "Nuestros programas están abiertos a estudiantes desde preparatoria hasta profesionales y adultos mayores interesados en la tecnología."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Dan asesoría legal sobre IA?",
+    "bot": "Tenemos una línea de investigación en Ética y Gobernanza que ofrece guías sobre regulación, aunque no brindamos litigio legal."
+  },
+  {
+    "intent": "CIUDADANO",
+    "user": "¿Cómo me entero de los eventos?",
+    "bot": "Suscríbete a nuestro boletín en yucatanai.org o síguenos en redes sociales oficiales."
+  },
+
+  /* ============================================================
+     2. ESTUDIANTE Y FORMACIÓN (Educación)
+     ============================================================ */
+  {
+    "intent": "ESTUDIANTE",
+    "user": "Quiero aprender IA, ¿por dónde empiezo?",
+    "bot": "Te recomendamos el curso 'Introducción a la IA Generativa'. Dura 4 semanas y aprenderás a usar ChatGPT, Claude y DALL-E para potenciar tu productividad sin necesitar código."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "Soy programador, busco algo avanzado.",
+    "bot": "Para ti tenemos el curso 'Desarrollo con Amazon Bedrock' (8 semanas) o los talleres de 'Integración de APIs GPT' y 'Frameworks en Python'. Son 100% técnicos."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Hay becas disponibles?",
+    "bot": "Sí. El Gobierno del Estado ofrece becas del 50% al 100% para estudiantes destacados de universidades públicas de Yucatán. Consulta las convocatorias vigentes."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Dan certificados con valor curricular?",
+    "bot": "Absolutamente. Nuestros cursos técnicos incluyen certificaciones avaladas por socios como AWS y la Secretaría de Investigación (SIIES)."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Qué es un perfil 'NoTec'?",
+    "bot": "Es un perfil enfocado en la estrategia y el uso de herramientas, no en la programación. Ideal para abogados, mercadólogos, administradores o directivos."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Tienen cursos de Prompt Engineering?",
+    "bot": "Sí, es uno de nuestros talleres más solicitados. Enseñamos técnicas avanzadas (Chain-of-Thought, Few-Shot) para obtener los mejores resultados de los LLMs."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Puedo hacer mi servicio social ahí?",
+    "bot": "Sí, aceptamos prestadores de servicio social de carreras afines a sistemas, diseño, comunicación y administración."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Enseñan Python?",
+    "bot": "Sí, Python es el lenguaje base de nuestros tracks técnicos, enfocado específicamente en librerías de IA como PyTorch, TensorFlow y LangChain."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Tienen cursos para niños?",
+    "bot": "Organizamos talleres de verano y hackathons juveniles para fomentar el pensamiento computacional desde temprana edad."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Qué necesito para el curso de Bedrock?",
+    "bot": "Conocimientos intermedios de programación, una cuenta de AWS (te ayudamos a crearla) y familiaridad con conceptos de nube."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Las clases son presenciales o en línea?",
+    "bot": "Ofrecemos modalidad híbrida. La teoría suele ser online y los laboratorios prácticos se realizan en el Parque Científico."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Cuánto duran los cursos?",
+    "bot": "Varían desde talleres intensivos de 1 día hasta diplomados de 8 a 12 semanas."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Tienen convenios con la UADY?",
+    "bot": "Sí, colaboramos estrechamente con la UADY, la UTM y otras instituciones educativas del estado para validar créditos."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Enseñan a detectar fraudes con IA?",
+    "bot": "Sí, tenemos un módulo especializado en 'Detección de Fraudes con Inteligencia Artificial' para el sector financiero y retail."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Qué es Amazon Bedrock?",
+    "bot": "Es el servicio de AWS para construir aplicaciones con IA Generativa. En el CIAY somos centro autorizado para capacitación en esta tecnología."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Me ayudan a conseguir trabajo?",
+    "bot": "Nuestros egresados entran a una bolsa de talento que compartimos con las empresas del ecosistema tecnológico de Yucatán."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Tienen cursos de ética?",
+    "bot": "Sí, el curso 'IA para el Derecho y Ética Legal' es fundamental para entender las implicaciones regulatorias de la tecnología."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Qué hago si repruebo?",
+    "bot": "Fomentamos el aprendizaje continuo. Puedes recursar módulos específicos o acceder a tutorías de refuerzo."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Necesito inglés?",
+    "bot": "Para los cursos técnicos es recomendable un nivel de lectura técnica en inglés, ya que mucha documentación está en ese idioma."
+  },
+  {
+    "intent": "ESTUDIANTE",
+    "user": "¿Cuándo empieza el próximo curso?",
+    "bot": "Las fechas de inicio son mensuales. Te invito a revisar el calendario académico en nuestra web."
+  },
+
+  /* ============================================================
+     3. INVERSIONISTA Y NEGOCIOS (Startups)
+     ============================================================ */
+  {
+    "intent": "INVERSIONISTA",
+    "user": "Busco startups para invertir capital.",
+    "bot": "El CIAY cuenta con una Aceleradora de Startups de alto potencial. Tenemos un portafolio curado en sectores AgroTech, Turismo y Salud. ¿Te interesa agendar un Demo Day?"
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué incentivos hay para empresas tecnológicas?",
+    "bot": "Yucatán ofrece incentivos fiscales, acceso a talento capacitado en el CIAY y una ubicación estratégica con conectividad global."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Tienen programas de incubación?",
+    "bot": "Sí, nuestra incubadora ofrece mentoría, créditos de nube (AWS/Google) y acceso a laboratorios para llevar ideas a MVP."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Cómo apoyan a las PyMEs?",
+    "bot": "A través de 'Soluciones Sectoriales', ayudamos a PyMEs a integrar herramientas de IA para automatizar ventas, inventarios y atención al cliente."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué es el ecosistema de colaboración?",
+    "bot": "Es la red que hemos tejido entre Gobierno, Academia, Startups y Corporativos (AWS, Google) para facilitar la innovación abierta."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Puedo poner una oficina en el CIAY?",
+    "bot": "El Parque Científico ofrece espacios de coworking y landing para empresas tecnológicas que colaboran con el centro."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Tienen casos de éxito?",
+    "bot": "Sí, startups incubadas aquí ya están aplicando IA para detección de plagas en habanero y optimización de ocupación hotelera."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué retorno de inversión ofrece la región?",
+    "bot": "Yucatán es uno de los estados con mayor crecimiento en nearshoring tecnológico, ofreciendo estabilidad, seguridad y talento competitivo."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Trabajan con Venture Capital?",
+    "bot": "Mantenemos relaciones con fondos de VC nacionales e internacionales para presentarles las mejores oportunidades del ecosistema."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Ofrecen soft-landing?",
+    "bot": "Sí, en coordinación con la Secretaría de Economía, facilitamos la llegada de empresas tecnológicas al estado."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué sectores son prioritarios?",
+    "bot": "Turismo Inteligente, Agroindustria 4.0, Salud Digital y Gobierno Eficiente."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Cómo protegen la propiedad intelectual?",
+    "bot": "Contamos con asesoría legal especializada en patentes y derechos de autor para software e IA."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Tienen acceso a GPUs?",
+    "bot": "Gracias a nuestras alianzas, facilitamos acceso a cómputo de alto rendimiento en la nube para entrenamiento de modelos."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Hacen matchmaking de negocios?",
+    "bot": "Sí, organizamos eventos donde conectamos soluciones desarrolladas en el CIAY con grandes empresas que tienen necesidades específicas."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué costo tiene la aceleración?",
+    "bot": "El programa de aceleración opera bajo un modelo de becas y equity-free en sus primeras etapas."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Puedo patrocinar un hackathon?",
+    "bot": "¡Por supuesto! Los patrocinadores obtienen visibilidad, acceso a talento y soluciones a retos específicos de su industria."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Evalúan la viabilidad técnica de proyectos?",
+    "bot": "Sí, nuestro comité técnico emite dictámenes sobre la factibilidad y escalabilidad de las soluciones de IA."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Qué papel juega Google?",
+    "bot": "Google provee herramientas, créditos y acceso a expertos para fortalecer las capacidades técnicas de las startups del CIAY."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "¿Hay oportunidades en turismo?",
+    "bot": "Enormes. Buscamos soluciones para personalización de experiencias, gestión de ingresos y promoción turística con IA."
+  },
+  {
+    "intent": "INVERSIONISTA",
+    "user": "Quiero una reunión con el director.",
+    "bot": "Con gusto. Por favor déjanos tus datos y el tema a tratar para canalizarlo con la Dirección de Estrategia."
+  },
+
+  /* ============================================================
+     4. GOBIERNO Y POLÍTICA PÚBLICA
+     ============================================================ */
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Cómo ayuda la IA al gobierno?",
+    "bot": "La IA permite automatizar trámites, predecir demanda de servicios, optimizar presupuestos y mejorar la atención ciudadana 24/7."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué es la gobernanza de datos?",
+    "bot": "Es el marco que asegura que los datos públicos se usen de forma ética, segura, privada y transparente en los modelos de IA."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Pueden capacitar a funcionarios?",
+    "bot": "Sí, tenemos programas de 'Upskilling' para servidores públicos, enfocados en eficiencia administrativa y toma de decisiones basada en datos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Tienen proyectos de seguridad?",
+    "bot": "Colaboramos en el desarrollo de sistemas de videovigilancia inteligente y análisis predictivo para la prevención del delito."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Cómo impacta en la salud pública?",
+    "bot": "Desarrollamos modelos para predecir brotes epidemiológicos, optimizar la gestión hospitalaria y asistir en diagnósticos tempranos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué es una ventanilla digital inteligente?",
+    "bot": "Es un sistema donde un agente de IA atiende al ciudadano, revisa sus documentos y gestiona citas sin intervención humana inicial."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Ayudan a redactar leyes sobre IA?",
+    "bot": "Nuestra área de Ética y Gobernanza asesora al legislativo en la creación de marcos normativos modernos y responsables."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿La IA va a reemplazar a los empleados de gobierno?",
+    "bot": "No. La IA es una herramienta para liberar a los funcionarios de tareas repetitivas, permitiéndoles enfocarse en atender casos complejos y humanos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué hacen con los datos de los ciudadanos?",
+    "bot": "El CIAY opera bajo estrictos protocolos de anonimización y seguridad, cumpliendo con la Ley de Protección de Datos Personales."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Pueden optimizar el transporte público?",
+    "bot": "Sí, mediante el análisis de flujos de movilidad podemos sugerir rutas y horarios más eficientes para el sistema Va y Ven."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué es el análisis de sentimiento ciudadano?",
+    "bot": "Es usar IA para 'escuchar' las redes sociales y reportes, entendiendo las preocupaciones reales de la gente en tiempo real."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Tienen soluciones para el agua?",
+    "bot": "Investigamos el uso de IA para detectar fugas en la red de agua potable y predecir el consumo por zonas."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Cómo garantizan que la IA no sea discriminatoria?",
+    "bot": "Auditamos nuestros modelos para detectar y mitigar sesgos algorítmicos, asegurando un trato justo para todos los ciudadanos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Colaboran con municipios del interior?",
+    "bot": "Sí, nuestra misión es descentralizar la tecnología, llevando soluciones a municipios fuera de Mérida."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué costo tiene implementar esto en una secretaría?",
+    "bot": "Realizamos diagnósticos de factibilidad para proponer soluciones escalables y ajustadas a los presupuestos públicos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Pueden digitalizar archivos físicos?",
+    "bot": "Sí, usamos visión computacional (OCR) para convertir archivos de papel en bases de datos consultables en segundos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Qué es un gemelo digital?",
+    "bot": "Es una réplica virtual de la ciudad o un proceso, que nos permite simular escenarios (ej. tráfico, huracanes) antes de que ocurran."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Apoyan en la recaudación fiscal?",
+    "bot": "La IA puede identificar patrones de evasión y facilitar el cumplimiento voluntario mediante asistentes de pago amigables."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Tienen alianzas con el gobierno federal?",
+    "bot": "Sí, buscamos alinear nuestras estrategias con la agenda digital nacional para potenciar recursos."
+  },
+  {
+    "intent": "GOBIERNO",
+    "user": "¿Cómo miden el éxito de un proyecto público?",
+    "bot": "Mediante KPIs claros: reducción de tiempos de espera, ahorro de recursos y aumento en la satisfacción ciudadana."
+  },
+
+  /* ============================================================
+     5. TÉCNICO Y DESARROLLADOR (Hard Tech)
+     ============================================================ */
+  {
+    "intent": "TECNICO",
+    "user": "¿Qué stack tecnológico usan?",
+    "bot": "Utilizamos una arquitectura moderna basada en Python, FastAPI, Docker, y orquestadores como LangChain o LlamaIndex."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Usan modelos Open Source?",
+    "bot": "Sí, implementamos y fine-tuneamos modelos como Llama 3, Mistral y Gemma para correr en infraestructura local cuando se requiere privacidad."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Cómo manejan el RAG?",
+    "bot": "Implementamos RAG (Retrieval-Augmented Generation) híbrido, combinando búsqueda vectorial (ChromaDB/FAISS) con grafos de conocimiento."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Tienen acceso a GPT-4?",
+    "bot": "Sí, a través de nuestra alianza con OpenAI y Azure, tenemos acceso empresarial a los modelos más avanzados."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Qué base de datos vectorial recomiendan?",
+    "bot": "Depende del caso. Usamos Pinecone para escala en nube y ChromaDB o Qdrant para despliegues locales o contenerizados."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Hacen Fine-Tuning o solo Prompt Engineering?",
+    "bot": "Ambos. Usamos Prompt Engineering para prototipado rápido y PEFT/LoRA para adaptar modelos a dominios específicos (ej. leyes yucatecas)."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Cómo evitan las alucinaciones?",
+    "bot": "Mediante 'Grounding': obligamos al modelo a citar fuentes de nuestra base de conocimiento y usamos validadores de salida."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Usan AWS Bedrock?",
+    "bot": "Sí, es una pieza central de nuestra infraestructura para acceder a modelos como Claude, Titan y Jurassic de forma segura."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Tienen API pública?",
+    "bot": "Estamos desarrollando un API Gateway para que desarrolladores locales puedan consumir nuestros servicios de IA. Próximamente lanzaremos la beta."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Qué hardware tienen?",
+    "bot": "Contamos con estaciones de trabajo con GPUs NVIDIA de última generación en el laboratorio del Parque Científico."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Usan Kubernetes?",
+    "bot": "Para despliegues productivos escalables, orquestamos nuestros microservicios en clusters de Kubernetes (EKS/GKE)."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Cómo manejan la latencia?",
+    "bot": "Optimizamos el pipeline de inferencia, usamos streaming de respuestas y caché semántico para preguntas frecuentes."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Python o JavaScript?",
+    "bot": "Python es el rey en el backend de IA (PyTorch, Pandas), pero usamos React/TypeScript para interfaces de usuario reactivas."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Qué es GraphRAG?",
+    "bot": "Es una técnica avanzada donde, además de vectores, usamos un grafo de conocimiento para entender las relaciones entre entidades y dar respuestas más profundas."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Hacen visión computacional?",
+    "bot": "Sí, aplicamos modelos de CNN y Transformers visuales para análisis de imágenes en agricultura y seguridad."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Cómo gestionan las credenciales?",
+    "bot": "Nunca hardcodeamos keys. Usamos gestores de secretos y variables de entorno inyectadas en tiempo de ejecución."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Tienen repositorios en GitHub?",
+    "bot": "Sí, fomentamos el Open Source. Algunos de nuestros componentes y datasets públicos están disponibles en nuestro GitHub oficial."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Qué opinan de los agentes autónomos?",
+    "bot": "Son el futuro. Estamos experimentando con arquitecturas agénticas (AutoGPT, BabyAGI) para tareas complejas de múltiples pasos."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Usan Hugging Face?",
+    "bot": "Es nuestra biblioteca de referencia para modelos, datasets y demos de la comunidad."
+  },
+  {
+    "intent": "TECNICO",
+    "user": "¿Puedo colaborar en el código?",
+    "bot": "¡Claro! Buscamos contribuidores. Acércate a nuestros hackathons o revisa nuestros issues abiertos."
+  },
+
+  /* ============================================================
+     6. ESCÉPTICO / HOSTIL (Manejo de Objeciones)
+     ============================================================ */
+  {
+    "intent": "SCEPTIC",
+    "user": "¿Para qué gastan dinero en esto si hay baches?",
+    "bot": "Es una pregunta válida. La inversión en tecnología no compite con los servicios básicos, los complementa. Al atraer empresas tecnológicas, aumentamos la recaudación estatal para, precisamente, arreglar mejor las calles."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "La IA nos va a quitar el trabajo.",
+    "bot": "La historia muestra que la tecnología cambia los trabajos, no los elimina. El CIAY existe para capacitarte y que tú seas quien maneje la IA, en lugar de ser reemplazado por ella."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Esto es pura moda pasajera.",
+    "bot": "La IA Generativa se compara con la invención de internet o la electricidad. No es una moda, es un cambio de paradigma productivo y Yucatán no puede quedarse atrás."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Seguro van a vender mis datos.",
+    "bot": "Absolutamente no. Somos una entidad pública regida por leyes estrictas de privacidad. Tus datos no se comercializan, se protegen."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "La IA se equivoca mucho.",
+    "bot": "Es cierto, no es perfecta. Por eso en el CIAY implementamos supervisión humana y sistemas de verificación (RAG) para minimizar errores."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Esto solo beneficia a los ricos.",
+    "bot": "Al contrario. Nuestra misión es democratizar el acceso. Ofrecemos cursos gratuitos y herramientas para que PyMEs y estudiantes de escuelas públicas también aprovechen la tecnología."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "No confío en el gobierno.",
+    "bot": "El CIAY trabaja con transparencia total. Nuestros algoritmos y datasets buscan ser auditables y nuestros socios (Google, AWS) garantizan estándares internacionales."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Yucatán no tiene nivel para esto.",
+    "bot": "Subestimamos nuestro potencial. Yucatán tiene ingenieros brillantes y un ecosistema en auge. El CIAY está aquí para demostrar que podemos competir a nivel mundial."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "¿Y si la IA se vuelve mala?",
+    "bot": "La IA es una herramienta, como un martillo. Depende de quién la use. Por eso tenemos un área dedicada exclusivamente a la Ética para asegurar usos positivos."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Es mucho dinero para una computadora.",
+    "bot": "No es solo una computadora, es infraestructura que habilita a miles de estudiantes y empresas a generar valor millonario para el estado."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Prefiero hablar con un humano.",
+    "bot": "Y es tu derecho. La IA está para agilizar trámites masivos, pero siempre habrá canales humanos para atención personalizada y empática."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Esto es humo.",
+    "bot": "Te invitamos a ver los resultados: startups incubadas, alumnos certificados y soluciones implementadas. Los hechos hablan más que el 'hype'."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "¿Por qué no usan software libre?",
+    "bot": "Sí lo usamos. Apoyamos el Open Source, pero también necesitamos alianzas con líderes globales para tener acceso a lo último en tecnología."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "La tecnología nos hace flojos.",
+    "bot": "La tecnología nos hace eficientes. Nos libera de tareas aburridas para que podamos usar nuestra creatividad y pensamiento crítico."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Seguro está arreglado.",
+    "bot": "Operamos con consejos consultivos donde participan universidades y sociedad civil para vigilar el rumbo del centro."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "No entiendo nada, esto es para genios.",
+    "bot": "Para nada. La IA Generativa se habla en español, no en código. Acércate a nuestros cursos básicos y verás lo fácil que es usarla."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "¿Qué pasa si se va la luz?",
+    "bot": "La infraestructura crítica tiene respaldos, pero el conocimiento que generamos en las personas es permanente y no depende de un enchufe."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Es peligroso para los niños.",
+    "bot": "Como internet, requiere supervisión. Enseñamos a los jóvenes a usarla con responsabilidad y pensamiento crítico."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Solo quieren votos.",
+    "bot": "El CIAY es un proyecto de estado a largo plazo, transexenal, diseñado para el futuro de las próximas generaciones, no para una elección."
+  },
+  {
+    "intent": "SCEPTIC",
+    "user": "Me da miedo.",
+    "bot": "Lo desconocido asusta. La mejor forma de perder el miedo es aprendiendo. Ven a conocer cómo funciona, te aseguramos que es fascinante."
+  },
+
+  /* ============================================================
+     7. PRENSA Y MEDIOS
+     ============================================================ */
+  {
+    "intent": "PRENSA",
+    "user": "Necesito un comunicado oficial.",
+    "bot": "Claro, visita nuestra sala de prensa en la web o contacta a comunicacion@yucatanai.org para recibir el kit de medios."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Puedo entrevistar al director?",
+    "bot": "Gestionamos las entrevistas a través de nuestra agenda de medios. Por favor envíanos tu solicitud y medio."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Tienen cifras de impacto?",
+    "bot": "Sí: número de alumnos capacitados, startups aceleradas y monto de inversión atraída. Te comparto el reporte anual."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Cuál es el ángulo de la nota?",
+    "bot": "Yucatán se posiciona como el Silicon Valley del sureste mediante la apuesta por la Inteligencia Artificial ética y productiva."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Puedo tomar fotos?",
+    "bot": "Sí, tenemos áreas designadas y un banco de imágenes oficial en alta resolución disponible para prensa."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Quién financia esto?",
+    "bot": "Es una inversión pública estatal complementada con recursos y créditos tecnológicos de nuestros socios privados."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Cuándo es el próximo evento?",
+    "bot": "Tenemos lanzamientos y demo days trimestrales. Te añadiremos a la lista de distribución para invitarte."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Qué opinan de la regulación?",
+    "bot": "El CIAY promueve activamente una regulación que fomente la innovación sin descuidar los derechos humanos."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Tienen voceros disponibles?",
+    "bot": "Sí, contamos con expertos técnicos y directivos capacitados para hablar con medios sobre distintos temas de IA."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Cuál es la nota del día?",
+    "bot": "Hoy destacamos el lanzamiento de nuestra nueva generación de startups agro-tecnológicas impulsadas por IA."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Me pueden explicar qué es IA para mi audiencia?",
+    "bot": "Claro. Podemos darte analogías sencillas y ejemplos locales para que tus lectores entiendan el impacto real."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Han ganado premios?",
+    "bot": "El proyecto ha sido reconocido en foros de innovación gubernamental. Te paso los detalles."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Colaboran con medios?",
+    "bot": "Sí, podemos colaborar en columnas de opinión o segmentos tecnológicos para educar a la audiencia."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Es seguro el edificio?",
+    "bot": "El Parque Científico cuenta con todas las medidas de seguridad y control de acceso."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Cuánta gente trabaja ahí?",
+    "bot": "El núcleo operativo es eficiente, pero el ecosistema involucra a cientos de investigadores y desarrolladores asociados."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Tienen exclusivas?",
+    "bot": "Podemos coordinar embargos de información para lanzamientos importantes si así lo requiere tu medio."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Qué dicen los críticos?",
+    "bot": "Escuchamos todas las voces. La crítica nos ayuda a mejorar nuestros procesos de transparencia y ética."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Cuál es el hashtag oficial?",
+    "bot": "Usamos #CIAYucatan, #RenacimientoMaya y #IAParaTodos."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Dónde descargo el logo?",
+    "bot": "En la sección 'Identidad Gráfica' de nuestra web encontrarás logos y manual de uso."
+  },
+  {
+    "intent": "PRENSA",
+    "user": "¿Puedo transmitir en vivo?",
+    "bot": "Sí, nuestras instalaciones cuentan con conectividad de alta velocidad para facilitar tu trabajo."
+  },
+
+  /* ============================================================
+     8. SECTORIAL (Turismo, Agro, Salud)
+     ============================================================ */
+  {
+    "intent": "SECTORIAL",
+    "user": "Tengo un hotel, ¿cómo me ayuda la IA?",
+    "bot": "Podemos implementar chatbots para reservas, análisis de precios dinámicos y personalización de la estancia de tus huéspedes."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy agricultor, ¿esto me sirve?",
+    "bot": "Sí. La IA analiza fotos de drones para detectar plagas, optimizar el riego y predecir el mejor momento para cosechar."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "En mi clínica queremos digitalizar.",
+    "bot": "La IA ayuda a transcribir consultas, organizar expedientes y pre-diagnosticar basándose en síntomas, ahorrando tiempo médico."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Tengo una tienda de ropa.",
+    "bot": "Puedes usar IA para predecir qué prendas se venderán más, gestionar tu inventario y recomendar productos a tus clientes."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "¿Sirve para la pesca?",
+    "bot": "Sí, modelos predictivos pueden ayudar a identificar zonas de pesca sostenible y monitorear vedas."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy abogado.",
+    "bot": "La IA Generativa es excelente para analizar contratos, buscar jurisprudencia y redactar borradores legales en segundos."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Trabajo en construcción.",
+    "bot": "La IA optimiza el cálculo de materiales, cronogramas de obra y diseño arquitectónico generativo."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy maestro.",
+    "bot": "Puedes usar IA para crear planes de clase personalizados, calificar tareas y generar material didáctico innovador."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Tengo un restaurante.",
+    "bot": "Optimiza tu menú, predice la demanda de ingredientes para reducir desperdicios y gestiona reservas automáticamente."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy artesano.",
+    "bot": "La IA puede ayudarte a crear nuevos diseños inspirados en patrones tradicionales y a vender tus productos en línea globalmente."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "¿Ayuda a la industria manufacturera?",
+    "bot": "Sí, mediante mantenimiento predictivo de maquinaria y control de calidad visual automatizado."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy contador.",
+    "bot": "Automatiza la clasificación de facturas, detección de anomalías fiscales y generación de reportes financieros."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Trabajo en logística.",
+    "bot": "La IA optimiza rutas de entrega en tiempo real, ahorrando combustible y tiempo."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Soy artista.",
+    "bot": "Explora nuevas fronteras creativas con herramientas generativas de imagen y música como co-pilotos de tu arte."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Sector inmobiliario.",
+    "bot": "Valuación automática de propiedades, tours virtuales inteligentes y análisis de tendencias de mercado."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Energía renovable.",
+    "bot": "Predicción de generación solar/eólica y optimización del consumo energético en redes inteligentes."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Marketing.",
+    "bot": "Generación de contenido masivo personalizado, segmentación de audiencias y análisis de campañas."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Recursos Humanos.",
+    "bot": "Filtrado inteligente de currículums, análisis de clima laboral y planes de capacitación personalizados."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "Periodismo.",
+    "bot": "Ayuda en la investigación de datos, verificación de hechos (fact-checking) y transcripción de entrevistas."
+  },
+  {
+    "intent": "SECTORIAL",
+    "user": "ONGs.",
+    "bot": "Optimización de recaudación de fondos, análisis de impacto social y redacción de propuestas de grants."
+  },
+
+  /* ============================================================
+     9. ACADEMIA E INVESTIGACIÓN
+     ============================================================ */
+  {
+    "intent": "ACADEMIA",
+    "user": "Quiero colaborar en un paper.",
+    "bot": "Bienvenido. Nuestras líneas de investigación están abiertas a colaboración. Contacta a la Dirección Académica."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Tienen acceso a journals?",
+    "bot": "Sí, a través de nuestras alianzas universitarias tenemos acceso a bibliografía científica relevante."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Puedo usar sus laboratorios?",
+    "bot": "Los laboratorios están disponibles para investigadores asociados y proyectos aprobados por el comité."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Organizan congresos?",
+    "bot": "Sí, el CIAY es sede de congresos regionales e internacionales sobre IA y computación."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Tienen postdoctorados?",
+    "bot": "Estamos abriendo plazas para estancias postdoctorales enfocadas en IA Generativa aplicada."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Qué opinan de la singularidad?",
+    "bot": "Es un tema de debate teórico. En el CIAY nos enfocamos en la IA estrecha y generativa con aplicaciones prácticas actuales."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Publican datasets?",
+    "bot": "Sí, promovemos la creación de datasets abiertos locales (ej. lengua maya, clima regional) para la comunidad."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Colaboran con el CONAHCYT?",
+    "bot": "Sí, nuestros investigadores suelen pertenecer al Sistema Nacional de Investigadores (SNI)."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Apoyan tesis de maestría?",
+    "bot": "Sí, podemos fungir como co-asesores o facilitar casos de estudio para tesis de posgrado."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Tienen seminarios?",
+    "bot": "Realizamos seminarios de investigación semanales donde se discuten los últimos avances del estado del arte."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Qué metodología usan?",
+    "bot": "Aplicamos el método científico riguroso, con énfasis en la reproducibilidad y la ética de datos."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Investigan sobre IA y Maya?",
+    "bot": "Sí, es una línea prioritaria: preservación de la lengua y cultura maya mediante modelos de lenguaje."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Tienen convenios internacionales?",
+    "bot": "Sí, con universidades en EE.UU., Europa y Latinoamérica para intercambio de conocimiento."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Aceptan investigadores visitantes?",
+    "bot": "Sí, tenemos programas de estancias cortas para investigadores de otras instituciones."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Cómo citar al CIAY?",
+    "bot": "Si usas nuestros recursos, te proporcionamos la referencia institucional adecuada para tus publicaciones."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Hacen divulgación científica?",
+    "bot": "Sí, traducimos papers complejos en artículos accesibles para la sociedad."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Qué perfil buscan en investigadores?",
+    "bot": "Doctores o Maestros con experiencia en Machine Learning, Ciencia de Datos o Ética Tecnológica."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Tienen patentes?",
+    "bot": "Fomentamos la protección de la propiedad intelectual generada en nuestros laboratorios."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Usan revisión por pares?",
+    "bot": "Todos nuestros proyectos de investigación pasan por revisión de pares interna y externa."
+  },
+  {
+    "intent": "ACADEMIA",
+    "user": "¿Participan en competencias?",
+    "bot": "Sí, apoyamos equipos estudiantiles en competencias como Kaggle o hackathons internacionales."
+  },
+
+  /* ============================================================
+     10. STARTUPS Y EMPRENDIMIENTO
+     ============================================================ */
+  {
+    "intent": "STARTUP",
+    "user": "Tengo una idea de app.",
+    "bot": "¡Genial! Tráela a nuestro 'Ideatón' o aplica a la incubadora para validarla y construir un prototipo."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "Necesito un CTO.",
+    "bot": "Nuestros eventos de networking son ideales para encontrar co-fundadores técnicos."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Cómo hago un pitch?",
+    "bot": "En la aceleradora te entrenamos para presentar tu proyecto ante inversionistas de forma efectiva."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Me ayudan a vender?",
+    "bot": "Te conectamos con primeros clientes corporativos a través de nuestros programas de innovación abierta."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Qué es un MVP?",
+    "bot": "Es tu Producto Mínimo Viable. En el CIAY te ayudamos a construirlo rápido usando herramientas No-Code e IA."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Tienen espacio de oficina?",
+    "bot": "Sí, ofrecemos membresías de coworking para startups en el Parque Científico."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Cómo registro mi marca?",
+    "bot": "Te orientamos en el proceso de propiedad intelectual y constitución legal de tu empresa."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Hay premios?",
+    "bot": "Organizamos concursos de innovación con premios en efectivo y en especie (créditos nube)."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Qué es un unicornio?",
+    "bot": "Una startup valuada en mil millones de dólares. Queremos que el próximo unicornio mexicano salga de Yucatán."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Apoyan emprendimiento social?",
+    "bot": "Sí, priorizamos proyectos que resuelvan problemas sociales o ambientales de la región."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Tienen mentores?",
+    "bot": "Contamos con una red de mentores internacionales ex-Google, ex-Amazon y emprendedores seriales."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Qué es el product-market fit?",
+    "bot": "Es cuando tu producto satisface una demanda real del mercado. Te ayudamos a encontrarlo."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Puedo exportar mi servicio?",
+    "bot": "Sí, te preparamos para la internacionalización de tu startup desde el día uno."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Aceptan cripto?",
+    "bot": "Investigamos tecnologías Web3 y Blockchain, y apoyamos startups en ese sector."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Cómo valúo mi empresa?",
+    "bot": "Te enseñamos metodologías de valuación para negociar con inversionistas."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Qué es bootstrapping?",
+    "bot": "Crecer con tus propios recursos. Te enseñamos a ser eficiente antes de buscar capital."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Tienen acceso a APIs de pago?",
+    "bot": "Tenemos alianzas con fintechs para facilitar la integración de pagos en tu startup."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Hacen demo days?",
+    "bot": "Sí, al finalizar los ciclos de aceleración presentamos los proyectos a la comunidad de inversión."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "¿Qué es el churn rate?",
+    "bot": "Es la tasa de cancelación de clientes. Usamos IA para predecirlo y reducirlo."
+  },
+  {
+    "intent": "STARTUP",
+    "user": "Quiero cambiar el mundo.",
+    "bot": "Esa es la actitud. En el CIAY te damos las herramientas tecnológicas para que lo logres."
+  }
+]

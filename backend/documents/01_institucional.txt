@@ -1,0 +1,10 @@
+NOMBRE: Centro de Inteligencia Artificial de Yucatán (CIAY).
+UBICACIÓN: Parque Científico y Tecnológico de Yucatán.
+MISIÓN: Posicionar a Yucatán como líder global en Inteligencia Artificial, impulsando la innovación, capacitando talento local y transformando la economía digital.
+VISIÓN: De la sabiduría ancestral a la inteligencia del mañana. Usar la tecnología más avanzada sobre los cimientos de una sabiduría milenaria.
+OBJETIVOS:
+1. Impulsar la innovación con proyectos de vanguardia.
+2. Formación de talento de vanguardia (capacitación).
+3. Impulso al emprendimiento (aceleradora de startups).
+4. Ecosistema y colaboración (alianzas estratégicas).
+VALOR: Convertir el conocimiento en impacto social, económico y científico.

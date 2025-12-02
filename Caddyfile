@@ -7,6 +7,9 @@ www.xac.lat {
 }
 
 api.xac.lat {
-    reverse_proxy ciay_backend:8000
+    reverse_proxy ciay_backend:8000 {
+        # Configuración crítica para WebSockets
+        header_up Connection {>Connection}
+        header_up Upgrade {>Upgrade}
+    }
 }
---- END OF CONTENT ---

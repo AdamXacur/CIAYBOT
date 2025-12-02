@@ -4,7 +4,7 @@ from typing import List, Union
 from pydantic import AnyHttpUrl, field_validator
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "CIAY Platform"
+    PROJECT_NAME: str
     API_V1_STR: str = "/api/v1"
     
     POSTGRES_SERVER: str
@@ -31,13 +31,12 @@ class Settings(BaseSettings):
         elif isinstance(v, (list, str)): return v
         raise ValueError(v)
 
+    # --- DEEPSEEK CONFIG ---
     DEEPSEEK_API_KEY: str
     DEEPSEEK_BASE_URL: str = "https://api.deepseek.com"
     
-    # --- FIX: AUMENTO MASIVO DE CONEXIONES PARA STRESS TEST ---
-    DB_POOL_SIZE: int = 100
-    DB_MAX_OVERFLOW: int = 50
-    # ----------------------------------------------------------
+    DB_POOL_SIZE: int = 20
+    DB_MAX_OVERFLOW: int = 10
 
     class Config:
         case_sensitive = True

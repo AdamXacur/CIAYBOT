@@ -1,0 +1,59 @@
+services:
+  # 1. BASE DE DATOS
+  db_ciay:
+    image: postgres:15-alpine
+    container_name: ciay_db
+    volumes:
+      - ciay_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - backend/.env
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ciay_admin -d ciay_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 2. BACKEND (API)
+  backend:
+    build: ./backend
+    container_name: ciay_backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    env_file:
+      - backend/.env
+    depends_on:
+      db_ciay:
+        condition: service_healthy
+    restart: always
+
+  # 3. FRONTEND (Next.js)
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        # URL de Producción para que el build de Next.js sepa a dónde apuntar
+        NEXT_PUBLIC_API_URL: https://api.xac.lat
+    container_name: ciay_frontend
+    restart: always
+
+  # 4. CADDY (HTTPS Automático)
+  caddy:
+    image: caddy:2-alpine
+    container_name: ciay_caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  ciay_postgres_data:
+  caddy_data:
+  caddy_config:
+--- END OF CONTENT ---

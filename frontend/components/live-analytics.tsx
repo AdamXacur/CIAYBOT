@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react"
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from "recharts"
-import { RefreshCw } from "lucide-react"
+import { TrendingUp, MessageSquare, Activity, RefreshCw } from "lucide-react"
+import { API_BASE_URL } from "@/lib/config" // <--- IMPORTANTE
 
 export function LiveAnalytics() {
   const [stats, setStats] = useState<any>(null)
@@ -12,7 +13,8 @@ export function LiveAnalytics() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/v1/analytics/dashboard/stats")
+      // USAMOS LA URL DE PRODUCCIÓN
+      const res = await fetch(`${API_BASE_URL}/api/v1/analytics/dashboard/stats`)
       const data = await res.json()
       setStats(data)
       setLoading(false)
@@ -29,22 +31,54 @@ export function LiveAnalytics() {
 
   if (loading || !stats) return (
       <div className="h-full flex items-center justify-center text-dorado animate-pulse">
-          <RefreshCw className="w-6 h-6 mr-2 animate-spin" /> Cargando métricas...
+          <RefreshCw className="w-6 h-6 mr-2 animate-spin" /> Cargando métricas en tiempo real...
       </div>
   )
 
-  // --- FIX: Añadir optional chaining y fallback para evitar el crash ---
-  const topicsData = (stats?.intents_distribution || []).map((i: any) => ({
+  const topicsData = stats.intents_distribution.map((i: any) => ({
       name: i.name,
       value: i.value
   }))
-  // --------------------------------------------------------------------
 
   return (
     <div className="h-full overflow-y-auto p-6 space-y-6 custom-scrollbar bg-slate-900">
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] text-gray-400 uppercase tracking-wider">Interacciones Totales</p>
+              <p className="text-3xl font-bold text-dorado mt-1">{stats.total_interactions}</p>
+            </div>
+            <MessageSquare className="w-8 h-8 text-guinda opacity-50" />
+          </div>
+        </div>
+
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] text-gray-400 uppercase tracking-wider">Sentimiento Promedio</p>
+              <p className={`text-3xl font-bold mt-1 ${stats.average_sentiment >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {stats.average_sentiment.toFixed(2)}
+              </p>
+            </div>
+            <Activity className="w-8 h-8 text-blue-400 opacity-50" />
+          </div>
+        </div>
+        
+        <div className="bg-slate-800/50 rounded-lg p-4 border border-guinda/30">
+             <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] text-gray-400 uppercase tracking-wider">Estado del Motor</p>
+              <p className="text-xl font-bold text-green-400 mt-1">OPTIMAL</p>
+            </div>
+            <TrendingUp className="w-8 h-8 text-green-400 opacity-50" />
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-slate-800/30 rounded-lg p-4 border border-guinda/20">
-            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Distribución de Intenciones</h4>
+            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Distribución de Intenciones (Real)</h4>
             <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={topicsData} layout="vertical">
@@ -59,10 +93,9 @@ export function LiveAnalytics() {
         </div>
 
         <div className="bg-slate-800/30 rounded-lg p-4 border border-guinda/20">
-            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Feed de Actividad Reciente</h4>
+            <h4 className="text-xs font-bold text-gray-400 uppercase mb-4">Feed de Actividad</h4>
             <div className="space-y-2">
-                {/* --- FIX: Añadir optional chaining también aquí --- */}
-                {(stats?.recent_activity || []).map((log: any, idx: number) => (
+                {stats.recent_activity.map((log: any, idx: number) => (
                     <div key={idx} className="text-xs border-b border-gray-700 pb-2">
                         <div className="flex justify-between text-gray-500 mb-1">
                             <span>{log.time}</span>
@@ -77,3 +110,4 @@ export function LiveAnalytics() {
     </div>
   )
 }
+--- END OF CONTENT ---

@@ -1,0 +1,12 @@
+xac.lat {
+    reverse_proxy ciay_frontend:3000
+}
+
+www.xac.lat {
+    redir https://xac.lat{uri}
+}
+
+api.xac.lat {
+    reverse_proxy ciay_backend:8000
+}
+--- END OF CONTENT ---

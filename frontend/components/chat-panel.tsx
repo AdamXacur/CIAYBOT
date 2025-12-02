@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { Send, User, Cpu, Sparkles } from "lucide-react"
+import { Send, Sparkles } from "lucide-react"
 import ReactMarkdown from 'react-markdown'
 import { API_BASE_URL } from "@/lib/config"
 
@@ -13,7 +13,13 @@ interface Message {
   isStreaming?: boolean
 }
 
-const QUICK_SUGGESTIONS = ["Inversión en Yucatán", "Oferta Educativa IA", "Trámites de Gobierno", "Startups Locales"]
+// --- SUGERENCIAS BASADAS EN LOS 4 PILARES DEL CIAY ---
+const QUICK_SUGGESTIONS = [
+  "¿Qué cursos de IA ofrecen?",       // Pilar: Formación
+  "Soy emprendedor, busco apoyo",     // Pilar: Emprendimiento
+  "Investigación en Salud y Agro",    // Pilar: Investigación
+  "Optimizar trámites de Gobierno"    // Pilar: Soluciones Sectoriales
+]
 
 export function ChatPanel({ sessionId }: { sessionId: string }) {
   const [messages, setMessages] = useState<Message[]>([
@@ -93,7 +99,6 @@ export function ChatPanel({ sessionId }: { sessionId: string }) {
 
   return (
     <div className="h-full flex flex-col bg-transparent">
-      {/* Mensajes */}
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6 custom-scrollbar">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -126,18 +131,9 @@ export function ChatPanel({ sessionId }: { sessionId: string }) {
             </div>
           </div>
         ))}
-        {isLoading && (
-          <div className="flex justify-start">
-            <div className="bg-white rounded-lg px-4 py-3 border border-gray-200 shadow-sm flex items-center gap-3">
-              <Cpu className="w-4 h-4 text-ciay-gold animate-spin" />
-              <span className="text-xs text-gray-500 font-bold uppercase">Consultando AWS Bedrock...</span>
-            </div>
-          </div>
-        )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area - Más corporativo */}
       <div className="p-6 bg-white border-t border-gray-100">
         <div className="flex flex-wrap gap-2 mb-4">
           {QUICK_SUGGESTIONS.map((s) => (

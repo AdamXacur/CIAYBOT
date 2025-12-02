@@ -10,11 +10,9 @@ router = APIRouter()
 
 @router.get("/dashboard/stats")
 def get_real_dashboard_stats(db: Session = Depends(get_db)):
-    # 1. Totales Reales
     total_interactions = db.query(InteractionLog).count()
     total_sessions = db.query(InteractionLog.session_id).distinct().count()
     
-    # 2. Distribución de Intenciones
     intent_stats = db.query(
         InteractionLog.detected_intent, 
         func.count(InteractionLog.id)
@@ -25,7 +23,6 @@ def get_real_dashboard_stats(db: Session = Depends(get_db)):
         for intent, count in intent_stats
     ]
 
-    # 3. Actividad por Hora (Últimas 24h)
     last_24h = datetime.utcnow() - timedelta(hours=24)
     hourly_activity = db.query(
         func.date_trunc('hour', InteractionLog.created_at).label('hour'),
@@ -33,12 +30,10 @@ def get_real_dashboard_stats(db: Session = Depends(get_db)):
     ).filter(InteractionLog.created_at >= last_24h)\
      .group_by('hour').order_by('hour').all()
 
-    # --- FIX: h es un datetime, usamos strftime directamente sobre h ---
     chart_data = [
         {"name": h.strftime("%H:00"), "tokens": count * 150, "latency": 0}
         for h, count in hourly_activity
     ]
-    # ------------------------------------------------------------------
     
     if not chart_data:
         chart_data = [{"name": "Sin Datos", "tokens": 0, "latency": 0}]
@@ -91,4 +86,16 @@ def get_session_history(session_id: str, db: Session = Depends(get_db)):
 @router.get("/profiles")
 def get_user_profiles(db: Session = Depends(get_db)):
     profiles = db.query(UserTaxonomy).all()
+    
+    # --- FALLBACK: SI LA DB ESTÁ VACÍA, DEVOLVER PERFILES POR DEFECTO ---
+    if not profiles:
+        return [
+            {"code": "INVERSIONISTA", "description": "Busca oportunidades de negocio o ROI", "examples": "¿Cómo puedo invertir? | Quiero poner capital"},
+            {"code": "ESTUDIANTE", "description": "Busca formación técnica y becas", "examples": "Quiero aprender Python | ¿Hay becas?"},
+            {"code": "GOBIERNO", "description": "Busca regulación y aplicación pública", "examples": "¿Cómo aplico IA en leyes? | Temas de ética"},
+            {"code": "STARTUP", "description": "Emprendedores buscando aceleración", "examples": "Tengo una idea de app | Busco mentoría"},
+            {"code": "GENERAL", "description": "Ciudadanía en general", "examples": "¿Qué es el CIAY? | Ubicación"}
+        ]
+    # --------------------------------------------------------------------
+    
     return [{"code": p.code, "description": p.description, "examples": p.examples} for p in profiles]

@@ -1,19 +1,3 @@
-import sys
-import subprocess
-import importlib.metadata
-
-# --- BLOQUE DE AUTO-REPARACIÓN (HOTFIX) ---
-try:
-    httpx_version = importlib.metadata.version("httpx")
-    if not httpx_version.startswith("0.27"):
-        print(f"🚨 DETECTADO CONFLICTO (HTTPX {httpx_version}). REPARANDO...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "httpx==0.27.2"])
-        print("✅ REPARACIÓN COMPLETADA. REINICIANDO...")
-        sys.exit(0)
-except Exception as e:
-    print(f"ℹ️ Verificación de entorno: {e}")
-# ------------------------------------------
-
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -27,23 +11,25 @@ from app.services.chat_service import chat_service
 from app.schemas.chat import ChatRequest
 
 Base.metadata.create_all(bind=engine)
+
 app = FastAPI(title=settings.PROJECT_NAME)
 
+# Configuración CORS Permisiva
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+    allow_origins=["*"], # Permitir todo para la demo
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# --- FIX: RUTA DE WEBSOCKET CON SESSION ID ---
-@app.websocket("/ws/logs/{session_id}")
-async def websocket_endpoint(websocket: WebSocket, session_id: str):
-    await manager.connect(websocket, session_id)
+@app.websocket("/ws/logs")
+async def websocket_endpoint(websocket: WebSocket):
+    # Aceptar conexión sin validar origen (Caddy ya filtra)
+    await manager.connect(websocket)
     try:
-        while True:
-            await websocket.receive_text()
-    except WebSocketDisconnect:
-        manager.disconnect(session_id)
-# ---------------------------------------------
+        while True: await websocket.receive_text()
+    except WebSocketDisconnect: manager.disconnect(websocket)
 
 @app.post(f"{settings.API_V1_STR}/chat")
 async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
@@ -58,9 +44,11 @@ app.include_router(analytics.router, prefix=f"{settings.API_V1_STR}/analytics")
 
 @app.on_event("startup")
 def startup_event():
-    db = SessionLocal()
-    ingestion_service.ingest_initial_data(db)
-    db.close()
+    try:
+        db = SessionLocal()
+        ingestion_service.ingest_initial_data(db)
+        db.close()
+    except: pass
 
 @app.get("/")
 def root(): return {"status": "CIAY Neuro-Symbolic System Operational"}

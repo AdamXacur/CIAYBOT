@@ -13,13 +13,16 @@ interface Message {
 }
 
 const QUICK_SUGGESTIONS = ["¿Qué es el CIAY?", "Quiero invertir", "¿Hay becas?", "Programas disponibles"]
-
-// URL HARDCODEADA PARA PRODUCCIÓN
 const API_URL = "https://api.xac.lat/api/v1/chat";
 
 export function ChatPanel() {
-  const [sessionId] = useState(() => Math.random().toString(36).substring(7))
+  const [sessionId, setSessionId] = useState<string>("")
   
+  // CORRECCIÓN: Generar ID solo en cliente para evitar error de hidratación
+  useEffect(() => {
+    setSessionId(Math.random().toString(36).substring(7))
+  }, [])
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -56,7 +59,6 @@ export function ChatPanel() {
     setIsLoading(true)
 
     try {
-      // USAMOS LA URL HARDCODEADA
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -136,7 +138,8 @@ export function ChatPanel() {
           <User className="w-5 h-5" />
           Interacción Ciudadana
         </h2>
-        <span className="text-[10px] text-gray-500 font-mono">ID: {sessionId}</span>
+        {/* Renderizar ID solo si existe para evitar mismatch */}
+        {sessionId && <span className="text-[10px] text-gray-500 font-mono">ID: {sessionId}</span>}
       </div>
 
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 custom-scrollbar">
@@ -184,7 +187,7 @@ export function ChatPanel() {
             <div className="bg-slate-700 rounded-lg px-4 py-3 border border-dorado/20">
               <div className="flex items-center gap-2">
                 <Cpu className="w-5 h-5 text-dorado animate-pulse" />
-                <span className="text-xs text-gray-400">Conectando con Gemini...</span>
+                <span className="text-xs text-gray-400">Conectando con DeepSeek...</span>
               </div>
             </div>
           </div>

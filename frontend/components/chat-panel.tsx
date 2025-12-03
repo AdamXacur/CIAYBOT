@@ -13,12 +13,12 @@ interface Message {
   isStreaming?: boolean
 }
 
-// --- SUGERENCIAS BASADAS EN LOS 4 PILARES DEL CIAY ---
+// --- SUGERENCIAS ESTRATÉGICAS (DETONADORES DE TOOLS) ---
 const QUICK_SUGGESTIONS = [
-  "¿Qué cursos de IA ofrecen?",       // Pilar: Formación
-  "Soy emprendedor, busco apoyo",     // Pilar: Emprendimiento
-  "Investigación en Salud y Agro",    // Pilar: Investigación
-  "Optimizar trámites de Gobierno"    // Pilar: Soluciones Sectoriales
+  "Me interesa invertir capital",      // -> Tool: save_contact
+  "Quiero inscribirme a un curso",     // -> Tool: register_course
+  "Reportar un fallo urbano",          // -> Tool: create_report
+  "¿Qué es el CIAY?"                   // -> Info General
 ]
 
 export function ChatPanel({ sessionId }: { sessionId: string }) {

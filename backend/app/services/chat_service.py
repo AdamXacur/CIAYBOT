@@ -35,7 +35,6 @@ class ChatService:
         }, indent=2)
 
     async def _classify_intent_semantically(self, message: str):
-        # ... (Lógica de clasificación existente)
         classification_prompt = [
             {"role": "system", "content": "Eres el Clasificador Semántico. Categorías: INVERSIONISTA, ESTUDIANTE, GOBIERNO, STARTUP, GENERAL, CONTACTO. JSON: {'intent': 'CATEGORIA', 'confidence': 0.95}"},
             {"role": "user", "content": message}
@@ -117,28 +116,21 @@ class ChatService:
                                 if content:
                                     full_response += content
                                     
-                                    # --- FILTRO VISUAL MEJORADO ---
-                                    # Si detectamos marcadores, no enviamos ese pedazo al usuario
-                                    if "@@" in content: continue
-                                    if "TOOL_CALL" in content: continue
-                                    # Si ya estamos dentro de un bloque JSON (detectado por llaves en el buffer global), ocultamos
-                                    if "@@TOOL_CALL" in full_response and "@@" not in full_response.split("@@TOOL_CALL")[1]:
+                                    # --- FIX DE STREAMING: CORTE LIMPIO ---
+                                    # Si detectamos que empieza el bloque de herramienta (@@), 
+                                    # dejamos de enviar texto al frontend inmediatamente.
+                                    # El resto se acumula en full_response para procesarse abajo.
+                                    if "@@" in full_response:
                                         continue
                                     
                                     yield content
                             except: pass
                             
-            # --- DEBUG LOGS EN SERVIDOR ---
-            print(f"\n🔍 [DEBUG] Respuesta Completa LLM:\n{full_response}\n")
-
-            # --- EXTRACCIÓN ROBUSTA ---
-            # Busca cualquier cosa entre @@TOOL_CALL: y @@, ignorando espacios extra
+            # --- PROCESAMIENTO DE HERRAMIENTA ---
             tool_match = re.search(r"@@TOOL_CALL:\s*({.*?})\s*@@", full_response, re.DOTALL)
             
             if tool_match:
                 json_str = tool_match.group(1)
-                print(f"🔍 [DEBUG] JSON Extraído: {json_str}")
-                
                 await log_step("[VALIDATOR]", "Validando estructura...", "running")
                 
                 try:
@@ -149,32 +141,29 @@ class ChatService:
                     validated_payload = None
                     if action == "save_contact":
                         model = SaveContactTool(**raw_data)
-                        validated_payload = model.data.dict() # Extraemos solo la data limpia
+                        validated_payload = model.data.dict()
                     elif action == "register_course":
                         model = RegisterCourseTool(**raw_data)
                         validated_payload = model.data.dict()
                     
                     if validated_payload:
-                        print(f"✅ [DEBUG] Datos Validados: {validated_payload}")
                         await log_step("[VALIDATOR]", "Schema Correcto", "success", validated_payload)
                         
-                        # Ejecución pasando la data limpia y la acción
+                        # Ejecución
                         result = tools_service.handle_tool_call(action, validated_payload)
                         await log_step("[TOOL_EXEC]", result.get("msg"), "success", result)
                         
                         yield f"\n\n✅ {result.get('msg')}"
                     else:
-                        print("❌ [DEBUG] Acción no reconocida en JSON")
+                        print("❌ [DEBUG] Acción no reconocida")
 
                 except ValidationError as ve:
                     print(f"❌ [DEBUG] Error Pydantic: {ve}")
-                    await log_step("[VALIDATOR]", f"Error Schema: {ve}", "failed")
+                    await log_step("[VALIDATOR]", "Error de formato en datos", "failed")
                 except json.JSONDecodeError:
-                    print("❌ [DEBUG] JSON Malformado")
                     await log_step("[VALIDATOR]", "JSON Inválido", "failed")
 
         except Exception as e:
-            print(f"🔥 [ERROR CRÍTICO]: {e}")
             yield f"Error: {str(e)}"
 
         threading.Thread(target=self._save_log_background, args=({

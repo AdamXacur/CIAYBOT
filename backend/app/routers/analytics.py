@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import func, desc
 from app.database import get_db
@@ -32,22 +32,35 @@ def get_real_dashboard_stats(db: Session = Depends(get_db)):
         "activity_chart": chart_data
     }
 
-# --- NUEVOS ENDPOINTS PARA TOOLS (CRM / GOBIERNO) ---
+# --- GESTIÓN DE LEADS (CRM) ---
 
 @router.get("/leads")
 def get_leads(db: Session = Depends(get_db)):
-    leads = db.query(ContactLead).order_by(ContactLead.created_at.desc()).all()
-    return leads
+    return db.query(ContactLead).order_by(ContactLead.created_at.desc()).all()
+
+@router.delete("/leads/{lead_id}")
+def delete_lead(lead_id: str, db: Session = Depends(get_db)):
+    lead = db.query(ContactLead).filter(ContactLead.id == lead_id).first()
+    if not lead:
+        raise HTTPException(status_code=404, detail="Lead no encontrado")
+    db.delete(lead)
+    db.commit()
+    return {"status": "success", "msg": "Lead eliminado"}
+
+# --- GESTIÓN DE CURSOS (ACADEMIA) ---
 
 @router.get("/registrations")
 def get_registrations(db: Session = Depends(get_db)):
-    regs = db.query(CourseRegistration).order_by(CourseRegistration.created_at.desc()).all()
-    return regs
+    return db.query(CourseRegistration).order_by(CourseRegistration.created_at.desc()).all()
 
-@router.get("/reports")
-def get_reports(db: Session = Depends(get_db)):
-    reports = db.query(CitizenReport).order_by(CitizenReport.created_at.desc()).all()
-    return reports
+@router.delete("/registrations/{reg_id}")
+def delete_registration(reg_id: str, db: Session = Depends(get_db)):
+    reg = db.query(CourseRegistration).filter(CourseRegistration.id == reg_id).first()
+    if not reg:
+        raise HTTPException(status_code=404, detail="Inscripción no encontrada")
+    db.delete(reg)
+    db.commit()
+    return {"status": "success", "msg": "Inscripción eliminada"}
 
 # --- ENDPOINTS EXISTENTES ---
 

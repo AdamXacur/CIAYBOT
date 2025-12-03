@@ -13,12 +13,11 @@ interface Message {
   isStreaming?: boolean
 }
 
-// --- SUGERENCIAS CORREGIDAS (SOLO CIAY) ---
 const QUICK_SUGGESTIONS = [
-  "Quiero invertir en tecnología",     // -> Tool: save_contact
-  "Inscribirme a un curso",            // -> Tool: register_course
-  "Programa de Aceleración",           // -> Info Startups
-  "Conocer el CIAY"                    // -> Info General
+  "Quiero invertir en tecnología",
+  "Inscribirme a un curso",
+  "Programa de Aceleración",
+  "Conocer el CIAY"
 ]
 
 export function ChatPanel({ sessionId }: { sessionId: string }) {
@@ -42,6 +41,13 @@ export function ChatPanel({ sessionId }: { sessionId: string }) {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  // --- FUNCIÓN DE LIMPIEZA: OCULTA EL JSON AL USUARIO ---
+  const cleanContent = (text: string) => {
+    // Elimina todo lo que esté entre @@TOOL_CALL: y @@
+    return text.replace(/@@TOOL_CALL:[\s\S]*?@@/g, "").trim();
+  }
+  // ------------------------------------------------------
 
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return
@@ -124,7 +130,8 @@ export function ChatPanel({ sessionId }: { sessionId: string }) {
                       a: ({node, ...props}) => <a className="text-blue-500 hover:underline" target="_blank" {...props} />
                     }}
                   >
-                    {message.content}
+                    {/* APLICAMOS LA LIMPIEZA AQUÍ */}
+                    {cleanContent(message.content)}
                   </ReactMarkdown>
                 </div>
               </div>

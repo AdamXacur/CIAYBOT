@@ -1,8 +1,12 @@
-from sqlalchemy import Column, String, Text, Integer, ForeignKey, Boolean, Float
+from sqlalchemy import Column, String, Text, Integer, ForeignKey, Boolean, Float, DateTime
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.sql import func
 import uuid
 from app.database import Base
-from app.models.base import TimeStampMixin
+
+class TimeStampMixin:
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
 class KnowledgeItem(Base, TimeStampMixin):
     __tablename__ = "knowledge_items"
@@ -36,9 +40,7 @@ class UserTaxonomy(Base, TimeStampMixin):
 class InteractionLog(Base, TimeStampMixin):
     __tablename__ = "interaction_logs"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    # --- CAMBIO CRÍTICO: AÑADIR SESSION_ID ---
     session_id = Column(String, index=True)
-    # -----------------------------------------
     user_input = Column(Text)
     detected_intent = Column(String)
     bot_response = Column(Text)
@@ -46,3 +48,34 @@ class InteractionLog(Base, TimeStampMixin):
     sentiment_score = Column(Float, default=0.0)
     sentiment_label = Column(String, default="NEUTRO")
     topics_detected = Column(String, nullable=True)
+
+class ContactLead(Base, TimeStampMixin):
+    __tablename__ = "contact_leads"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    nombre = Column(String, nullable=True)
+    correo = Column(String, nullable=True)
+    empresa = Column(String, nullable=True)
+    telefono = Column(String, nullable=True)
+    interes = Column(String, nullable=True)
+    mensaje = Column(Text, nullable=True)
+    origen = Column(String, default="Chatbot")
+
+# --- NUEVAS TABLAS PARA TOOLS ---
+
+class CourseRegistration(Base, TimeStampMixin):
+    __tablename__ = "course_registrations"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    student_name = Column(String)
+    email = Column(String)
+    course_name = Column(String) # Ej: "Intro a IA", "Python"
+    status = Column(String, default="Pre-inscrito")
+
+class CitizenReport(Base, TimeStampMixin):
+    __tablename__ = "citizen_reports"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    report_type = Column(String) # Ej: Bache, Luminaria, Fuga
+    location = Column(String)
+    description = Column(Text)
+    status = Column(String, default="Abierto")
+    ticket_id = Column(String, unique=True) # Folio generado
+# --------------------------------

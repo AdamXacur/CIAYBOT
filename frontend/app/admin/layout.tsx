@@ -10,8 +10,7 @@ import {
     Server,
     Database,
     Briefcase,
-    GraduationCap,
-    Megaphone
+    GraduationCap
 } from "lucide-react"
 import Link from "next/link"
 
@@ -31,11 +30,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { href: "/admin/profiles", label: "Gestión de Perfiles", icon: Users },
   ]
 
-  // Nuevos Módulos Operativos
+  // --- CORRECCIÓN: SOLO MÓDULOS CIAY (CRM Y ACADEMIA) ---
   const opsItems = [
-    { href: "/admin/leads", label: "CRM Leads", icon: Briefcase },
-    { href: "/admin/courses", label: "Academia", icon: GraduationCap },
-    { href: "/admin/reports", label: "Reportes Ciudadanos", icon: Megaphone },
+    { href: "/admin/leads", label: "CRM Inversión/Startups", icon: Briefcase },
+    { href: "/admin/courses", label: "Academia & Cursos", icon: GraduationCap },
   ]
 
   if (pathname === "/admin/login") return <>{children}</>
@@ -49,7 +47,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         <nav className="flex-1 py-6 space-y-6 px-3 overflow-y-auto custom-scrollbar">
-           {/* Módulos Analíticos */}
            <div>
                <p className="px-3 text-[10px] font-bold text-ciay-gold/70 uppercase mb-2 tracking-wider">Analítica</p>
                {menuItems.map((item) => {
@@ -64,7 +61,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                })}
            </div>
 
-           {/* Módulos Operativos (NUEVO) */}
            <div>
                <p className="px-3 text-[10px] font-bold text-ciay-gold/70 uppercase mb-2 tracking-wider">Operación</p>
                {opsItems.map((item) => {

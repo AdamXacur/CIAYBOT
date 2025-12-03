@@ -13,12 +13,12 @@ interface Message {
   isStreaming?: boolean
 }
 
-// --- SUGERENCIAS ESTRATÉGICAS (DETONADORES DE TOOLS) ---
+// --- SUGERENCIAS CORREGIDAS (SOLO CIAY) ---
 const QUICK_SUGGESTIONS = [
-  "Me interesa invertir capital",      // -> Tool: save_contact
-  "Quiero inscribirme a un curso",     // -> Tool: register_course
-  "Reportar un fallo urbano",          // -> Tool: create_report
-  "¿Qué es el CIAY?"                   // -> Info General
+  "Quiero invertir en tecnología",     // -> Tool: save_contact
+  "Inscribirme a un curso",            // -> Tool: register_course
+  "Programa de Aceleración",           // -> Info Startups
+  "Conocer el CIAY"                    // -> Info General
 ]
 
 export function ChatPanel({ sessionId }: { sessionId: string }) {

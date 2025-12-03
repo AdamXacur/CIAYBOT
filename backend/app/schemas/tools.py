@@ -1,22 +1,28 @@
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field
 from typing import Literal, Optional
 
-# --- MODELOS ESTRICTOS PARA VALIDACIÓN DE LLM ---
+# --- SUB-MODELOS DE DATOS (PAYLOAD) ---
 
-class SaveContactSchema(BaseModel):
-    action: Literal["save_contact"]
+class ContactData(BaseModel):
     nombre: str = Field(..., description="Nombre completo del usuario")
-    correo: str = Field(..., description="Correo electrónico válido")
-    empresa: Optional[str] = Field(None, description="Nombre de la empresa o startup")
-    interes: str = Field(..., description="Resumen del interés (Inversión, Alianza, etc)")
-    telefono: Optional[str] = Field(None, description="Número de teléfono si se proporciona")
+    correo: str = Field(..., description="Correo electrónico")
+    empresa: Optional[str] = Field(None, description="Empresa")
+    interes: str = Field(..., description="Interés principal")
+    telefono: Optional[str] = Field(None, description="Teléfono")
 
-class RegisterCourseSchema(BaseModel):
-    action: Literal["register_course"]
+class CourseData(BaseModel):
     nombre: str = Field(..., description="Nombre completo del estudiante")
-    correo: str = Field(..., description="Correo electrónico para la inscripción")
-    curso: str = Field(..., description="Nombre del curso (Python, IA, Bedrock, etc)")
+    correo: str = Field(..., description="Correo electrónico")
+    curso: str = Field(..., description="Nombre del curso (Python, IA, etc)")
 
-# Este es el modelo maestro que el LLM debe intentar llenar
-class ToolOutput(BaseModel):
-    tool_call: SaveContactSchema | RegisterCourseSchema
+# --- MODELOS DE ACCIÓN (ENVOLTORIOS) ---
+
+class SaveContactTool(BaseModel):
+    action: Literal["save_contact"]
+    data: ContactData
+
+class RegisterCourseTool(BaseModel):
+    action: Literal["register_course"]
+    data: CourseData
+
+#
